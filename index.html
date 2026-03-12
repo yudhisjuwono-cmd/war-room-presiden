@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Executive Command Center | Simulasi Presiden RI</title>
+    <title>Executive War Room | Simulasi Presiden RI</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net"></script>
     <link href="https://cdnjs.cloudflare.com" rel="stylesheet">
@@ -13,7 +13,7 @@
         body { font-family: 'Inter', sans-serif; background-color: var(--paper-white); color: #1a1a1a; overflow-x: hidden; }
         h1, h2, h3, h4, .serif { font-family: 'Crimson Pro', serif; }
         .header-top { border-top: 6px solid var(--economist-red); }
-        .card-pilar { border-right: 1px solid #e5e7eb; border-bottom: 1px solid #e5e7eb; position: relative; cursor: help; transition: all 0.3s; }
+        .card-pilar { border-right: 1px solid #e5e7eb; border-bottom: 1px solid #e5e7eb; position: relative; cursor: help; transition: all 0.3s; min-height: 120px; }
         .card-pilar:hover { background-color: #f8fafc; }
         .tooltip-content { display: none; position: absolute; top: 100%; left: 0; width: 280px; background: white; border: 1px solid #000; padding: 15px; z-index: 99; box-shadow: 10px 10px 0px rgba(0,0,0,0.1); pointer-events: none; }
         .card-pilar:hover .tooltip-content { display: block; }
@@ -22,20 +22,18 @@
 </head>
 <body class="antialiased">
 
-    <!-- Overlay Sinkronisasi -->
     <div id="reboot-overlay">
-        <h2 class="text-4xl serif italic text-[#e3120b] animate-pulse">Menghubungkan Jaringan Strategis...</h2>
-        <p class="text-[10px] uppercase tracking-[0.5em] mt-6 text-slate-400 font-bold">RKP 2026 • RPJMN 2025-2029 • CIVIL SOCIETY MONITOR</p>
+        <h2 class="text-4xl serif italic text-[#e3120b] animate-pulse">Sinkronisasi Jaringan Komando...</h2>
+        <p class="text-[10px] uppercase tracking-[0.5em] mt-6 text-slate-400 font-bold">RKP 2026 • BMKG • SSGI • CIVIL SOCIETY FEED</p>
     </div>
 
-    <!-- Branding Header -->
     <header class="max-w-7xl mx-auto px-6 pt-8 pb-4 header-top">
         <div class="flex justify-between items-end border-b border-black pb-4">
             <div class="text-left">
-                <span class="bg-[#e3120b] text-white px-2 py-1 text-[10px] font-bold uppercase tracking-widest italic">Dokumen Rahasia Negara</span>
-                <h1 class="text-5xl md:text-7xl font-extrabold serif italic tracking-tight mt-4 italic">Kantor Simulasi Presiden</h1>
+                <span class="bg-[#e3120b] text-white px-2 py-1 text-[10px] font-bold uppercase tracking-widest">Laporan Utama Maret 2026</span>
+                <h1 class="text-5xl md:text-7xl font-extrabold serif italic tracking-tight mt-4">Kantor Simulasi Presiden</h1>
             </div>
-            <div class="text-right hidden md:block italic">
+            <div class="text-right hidden md:block">
                 <p id="live-time" class="text-sm font-bold serif italic"></p>
                 <p class="text-[10px] uppercase tracking-widest text-slate-400 mt-1 font-bold italic">Republik Indonesia</p>
             </div>
@@ -43,131 +41,106 @@
     </header>
 
     <main class="max-w-7xl mx-auto px-6 py-10">
-        
-        <!-- Main Analysis Column -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-12">
             <div class="lg:col-span-8 border-r border-slate-100 pr-0 lg:pr-12">
-                <span class="text-[#e3120b] font-bold text-xs uppercase tracking-[0.2em] serif italic">Amanat & Kebijakan Sektoral</span>
-                <h2 id="policy-title" class="text-4xl md:text-6xl font-extrabold serif mt-4 mb-8 leading-none tracking-tighter italic">Menganalisis Kesejahteraan...</h2>
-                <p id="policy-statement" class="text-2xl text-slate-800 leading-tight serif italic border-l-4 border-[#e3120b] pl-10 mb-10 py-2">
-                    Sinkronisasi parameter RKP 2026 dengan kondisi riil di lapangan...
-                </p>
-                
-                <!-- Regional Monitor -->
-                <div class="bg-slate-50 p-6 border-y border-slate-200 grid grid-cols-1 md:grid-cols-3 gap-6 italic">
-                    <div>
-                        <p class="text-[10px] font-bold uppercase text-slate-400 tracking-widest mb-2 font-bold italic">Barat (Sumatera)</p>
-                        <p class="text-xs italic leading-relaxed font-bold italic"><strong>Logistik:</strong> Pemulihan jalur distribusi Sinabang pasca gempa M 6,4.</p>
-                    </div>
-                    <div class="border-x border-slate-200 px-4 font-bold italic">
-                        <p class="text-[10px] font-bold uppercase text-slate-400 tracking-widest mb-2 font-bold italic">Tengah (IKN/Nikel)</p>
-                        <p class="text-xs italic leading-relaxed font-bold italic"><strong>Industri:</strong> Hilirisasi nikel stabilkan ekonomi regional di angka 7,2%.</p>
-                    </div>
-                    <div class="pl-2 font-bold italic">
-                        <p class="text-[10px] font-bold uppercase text-slate-400 tracking-widest mb-2 font-bold italic">Timur (Papua/3T)</p>
-                        <p class="text-xs italic leading-relaxed font-bold italic"><strong>Krisis:</strong> Harga beras Rp19.700. Perlu aktivasi kargo Tol Udara.</p>
-                    </div>
-                </div>
+                <span class="text-[#e3120b] font-bold text-xs uppercase tracking-[0.2em] serif italic">Amanat Strategis RKP 2026</span>
+                <h2 id="policy-title" class="text-4xl md:text-6xl font-extrabold serif mt-4 mb-8 leading-none tracking-tighter italic">Mensintesis Data...</h2>
+                <p id="policy-statement" class="text-2xl text-slate-800 leading-tight serif italic border-l-4 border-[#e3120b] pl-10 mb-10 py-2 italic font-bold">Memproses parameter kebijakan nasional...</p>
             </div>
-            
             <div class="lg:col-span-4">
                 <div class="sticky top-24">
-                    <h3 class="serif text-2xl font-bold mb-4 italic">Dilema Pengambil Kebijakan</h3>
-                    <p id="dilema-text" class="text-sm text-slate-600 leading-relaxed italic mb-8 italic">
-                        Menganalisis variabel fiskal versus suara kritis masyarakat sipil...
-                    </p>
+                    <h3 class="serif text-2xl font-bold mb-4 italic">Dilema Kebijakan</h3>
+                    <p id="dilema-text" class="text-sm text-slate-600 leading-relaxed italic mb-8">Menyeimbangkan fiskal vs suara masyarakat sipil...</p>
                     <div class="border-t-2 border-black pt-6">
-                        <span class="text-[#e3120b] text-[10px] font-bold uppercase tracking-widest">Target Sektoral (Inpres)</span>
+                        <span class="text-[#e3120b] text-[10px] font-bold uppercase tracking-widest font-bold">Target Inpres Sektoral</span>
                         <p id="policy-target" class="text-sm font-bold mt-2 serif italic leading-snug italic font-bold">-</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 10 Pillars Grid -->
         <div class="grid grid-cols-2 md:grid-cols-5 border-y border-black mb-12">
             <div class="card-pilar p-6">
-                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest italic">1. Pangan</span>
-                <h4 class="text-2xl font-bold mt-2 serif italic font-bold">Rp13.680</h4>
-                <p class="text-[10px] text-[#e3120b] font-bold mt-1 uppercase italic tracking-tighter">Beras Medium</p>
-                <div class="tooltip-content"><p class="text-xs italic"><strong>Laporan Bapanas:</strong> Harga beras stabil di Jawa, namun melambung di Papua. Perlu intervensi Tol Laut segera.</p></div>
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">1. Pangan</span>
+                <h4 class="text-2xl font-bold mt-2 serif font-bold">Rp13.680</h4>
+                <p class="text-[10px] text-[#e3120b] font-bold mt-1 uppercase italic">Beras Medium</p>
+                <div class="tooltip-content"><p class="text-xs italic">Bapanas memantau disparitas harga di wilayah Timur. Target: Penurunan harga H+7 intervensi.</p></div>
             </div>
-            <div class="card-pilar p-6 bg-slate-50 italic">
-                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest italic">2. Kurs (IDR)</span>
-                <h4 id="stat-kurs" class="text-2xl font-bold mt-2 serif italic italic font-bold">Rp16.891</h4>
-                <p id="kurs-status" class="text-[10px] font-bold mt-1 uppercase italic tracking-tighter italic font-bold">-</p>
-                <div class="tooltip-content"><p class="text-xs italic"><strong>Kajian BI:</strong> Tekanan dipicu gejolak global. Siaga intervensi di pasar spot & DNDF.</p></div>
+            <div class="card-pilar p-6 bg-slate-50">
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">2. Kurs (IDR)</span>
+                <h4 id="stat-kurs" class="text-2xl font-bold mt-2 serif italic font-bold">Rp16.891</h4>
+                <p id="kurs-status" class="text-[10px] font-bold mt-1 uppercase italic font-bold">-</p>
+                <div class="tooltip-content"><p class="text-xs italic">Kajian BI: Tekanan dipicu gejolak global. Siaga intervensi di pasar spot & DNDF.</p></div>
             </div>
             <div class="card-pilar p-6">
-                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest italic">3. Advokasi & Isu Viral</span>
-                <h4 id="stat-news" class="text-[11px] font-bold mt-2 leading-tight italic font-bold">Monitor Sentimen...</h4>
-                <div class="tooltip-content">
-                    <p class="text-[10px] leading-relaxed italic mb-1"><strong>YLBHI & LBH:</strong> Soroti upah riil & perlindungan sengketa agraria.</p>
-                    <p class="text-[10px] leading-relaxed italic"><strong>CELIOS:</strong> Waspada ketimpangan akses modal UMKM.</p>
-                </div>
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">3. Advokasi & Berita</span>
+                <h4 id="stat-news" class="text-[11px] font-bold mt-2 leading-tight italic font-bold">Monitor Isu Nasional...</h4>
+                <div class="tooltip-content"><p class="text-[10px] italic">Monitor LBH, YLBHI, & Celios: Fokus pada upah riil, ketimpangan modal, dan kedaulatan agraria.</p></div>
             </div>
             <div class="card-pilar p-6 bg-slate-50">
-                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest italic">4. Manufaktur</span>
-                <h4 class="text-2xl font-bold mt-2 serif italic font-bold">53.8</h4>
-                <p class="text-[10px] text-emerald-600 font-bold mt-1 uppercase italic tracking-tighter italic font-bold">Ekspansi PMI</p>
-            </div>
-            <div class="card-pilar p-6 italic font-bold">
-                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest italic font-bold">5. Bansos</span>
-                <h4 class="text-2xl font-bold mt-2 serif italic italic font-bold">42.5%</h4>
-                <p class="text-[10px] text-slate-500 font-bold mt-1 uppercase italic tracking-tighter italic font-bold">Realisasi Q1</p>
-            </div>
-            <div class="card-pilar p-6 bg-slate-50">
-                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest italic font-bold">6. BI-Rate</span>
-                <h4 class="text-2xl font-bold mt-2 serif italic font-bold">4.75%</h4>
-                <p class="text-[10px] text-slate-500 font-bold mt-1 uppercase italic tracking-tighter italic font-bold italic font-bold">Moneter</p>
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">4. Manufaktur</span>
+                <h4 class="text-2xl font-bold mt-2 serif font-bold italic">53.8</h4>
+                <p class="text-[10px] text-emerald-600 font-bold mt-1 uppercase italic font-bold">PMI Ekspansi</p>
+                <div class="tooltip-content"><p class="text-xs italic">Industri manufaktur stabil di atas 50 poin, didorong oleh hilirisasi mineral strategis (RPJMN).</p></div>
             </div>
             <div class="card-pilar p-6">
-                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest italic font-bold">7. Minyak Dunia</span>
-                <h4 id="stat-minyak" class="text-2xl font-bold mt-2 serif italic italic font-bold">...</h4>
-                <p class="text-[10px] text-[#e3120b] font-bold mt-1 uppercase italic tracking-tighter italic font-bold">Subsidi Energi</p>
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">5. Bansos</span>
+                <h4 class="text-2xl font-bold mt-2 serif font-bold italic">42.5%</h4>
+                <p class="text-[10px] text-slate-500 font-bold mt-1 uppercase italic font-bold">Realisasi Q1</p>
+                <div class="tooltip-content"><p class="text-xs italic">Kemensos mempercepat penyaluran PKH & BPNT Tahap 1 untuk menjaga daya beli pra-Ramadan.</p></div>
             </div>
-            <!-- Pilar 8: SSGI & MBG -->
             <div class="card-pilar p-6 bg-slate-50">
-                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest italic font-bold">8. Kesehatan (SSGI)</span>
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">6. BI-Rate</span>
+                <h4 class="text-2xl font-bold mt-2 serif font-bold">4.75%</h4>
+                <p class="text-[10px] text-slate-500 font-bold mt-1 uppercase italic font-bold">Stabil</p>
+                <div class="tooltip-content"><p class="text-xs italic">Suku bunga dipertahankan untuk menyeimbangkan inflasi pangan dan nilai tukar.</p></div>
+            </div>
+            <div class="card-pilar p-6">
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">7. Minyak Dunia</span>
+                <h4 id="stat-minyak" class="text-2xl font-bold mt-2 serif italic font-bold">US$ 93.74</h4>
+                <p class="text-[10px] text-[#e3120b] font-bold mt-1 uppercase italic font-bold">Subsidi</p>
+            </div>
+            <div class="card-pilar p-6 bg-slate-50">
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">8. Gizi & MBG</span>
                 <div class="mt-2">
-                    <p class="text-[10px] font-bold italic font-bold">Stunting: <span class="text-emerald-600 italic font-bold">14.5%</span></p>
-                    <p class="text-[10px] font-bold mt-1 text-blue-600 italic font-bold">MBG: 85% Cakupan</p>
+                    <p class="text-[10px] font-bold italic">SSGI: <span class="text-emerald-600 font-bold">14.5%</span></p>
+                    <p class="text-[10px] font-bold mt-1 text-blue-600 font-bold">MBG: 85% Cakupan</p>
                 </div>
-                <div class="tooltip-content"><p class="text-xs italic"><strong>MBG Watch:</strong> Fokus kualitas nutrisi sekolah. Target RPJMN: Hilangkan kemiskinan gizi.</p></div>
             </div>
             <div class="card-pilar p-6">
-                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest italic font-bold">9. Gempa (BMKG)</span>
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">9. Gempa (BMKG)</span>
                 <h4 id="stat-gempa" class="text-[11px] font-bold mt-2 leading-tight italic font-bold">M 6,4 Sinabang</h4>
+                <div class="tooltip-content"><p class="text-xs italic">Laporan BMKG: Status Waspada di wilayah pesisir Aceh & Sumatera Utara pasca gempa tektonik.</p></div>
             </div>
             <div class="card-pilar p-6 bg-slate-50">
-                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest italic font-bold">10. IHSG</span>
-                <h4 class="text-2xl font-bold mt-2 serif italic font-bold italic font-bold">7.421</h4>
-                <p class="text-[10px] text-[#e3120b] font-bold mt-1 uppercase italic tracking-tighter italic font-bold">Bursa</p>
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">10. IHSG</span>
+                <h4 class="text-2xl font-bold mt-2 serif italic font-bold">7.421</h4>
+                <p class="text-[10px] text-[#e3120b] font-bold mt-1 uppercase italic font-bold">Pasar</p>
             </div>
         </div>
 
         <div id="emergency-container" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-16 py-8 border-b border-black italic font-bold">
             <div>
-                <h3 class="serif text-3xl font-bold mb-6 italic border-b-4 border-[#e3120b] inline-block font-bold">Matriks Koordinasi Darurat</h3>
-                <table class="w-full text-sm serif italic font-bold italic font-bold">
-                    <tbody id="emergency-rows" class="divide-y divide-slate-200 italic font-bold"></tbody>
+                <h3 class="serif text-3xl font-bold mb-6 italic border-b-4 border-[#e3120b] inline-block">Matriks Koordinasi Darurat</h3>
+                <table class="w-full text-sm italic font-bold">
+                    <tbody id="emergency-rows" class="divide-y divide-slate-200"></tbody>
                 </table>
             </div>
             <div>
-                <h3 class="serif text-2xl font-bold mb-6 italic italic font-bold italic font-bold">Dampak Intervensi H+7</h3>
+                <h3 class="serif text-2xl font-bold mb-6 italic italic font-bold">Simulasi Dampak H+7</h3>
                 <canvas id="impactChart"></canvas>
             </div>
         </div>
 
         <div class="mt-16 text-center italic font-bold">
-            <button onclick="rebootSystem()" class="serif text-2xl italic font-bold border-2 border-black px-12 py-4 hover:bg-black hover:text-white transition-all font-bold">
-                Sinkronisasi & Audit Kebijakan Nasional
+            <button onclick="rebootSystem()" class="serif text-2xl italic font-bold border-2 border-black px-12 py-4 hover:bg-black hover:text-white transition-all">
+                Sinkronisasi Jaringan Komando
             </button>
         </div>
     </main>
 
-    <footer class="max-w-7xl mx-auto px-6 py-12 border-t border-black text-center text-[10px] font-bold uppercase tracking-[0.5em] text-slate-400 italic font-bold font-bold font-bold">
-        Sistem Komando Strategis &bullet; Evidence-Based Policy &bullet; 2026
+    <footer class="max-w-7xl mx-auto px-6 py-12 border-t border-black text-center text-[10px] font-bold uppercase tracking-[0.5em] text-slate-400 italic font-bold">
+        Sistem Komando Strategis &bullet; RKP 2026 &bullet; RPJMN 2025-2029
     </footer>
 
     <script>
@@ -202,9 +175,9 @@
         }
 
         async function syncData() {
-            let kurs = 16891; 
-            let minyak = 93.74;
-
+            // PARAMETER MARET 2026 (FALLBACK)
+            let kurs = 16891; let minyak = 93.74;
+            
             try {
                 const res = await fetch('https://open.er-api.com');
                 if (res.ok) {
@@ -214,7 +187,11 @@
                 const resNews = await fetch(`https://api.rss2json.com{encodeURIComponent('https://www.antaranews.com')}`);
                 const dataNews = await resNews.json();
                 document.getElementById('stat-news').innerText = dataNews.items.title || "Monitor Isu Sipil Aktif";
-            } catch (e) { console.log("Simulation Active"); }
+                
+                const resGempa = await fetch('https://data.bmkg.go.id');
+                const dataGempa = await resGempa.json();
+                document.getElementById('stat-gempa').innerText = `M ${dataGempa.Infogempa.gempa.Magnitude} - ${dataGempa.Infogempa.gempa.Wilayah}`;
+            } catch (e) { console.warn("Sistem menggunakan data simulasi."); }
 
             document.getElementById('stat-kurs').innerText = `Rp${kurs.toLocaleString('id-ID')}`;
             document.getElementById('stat-minyak').innerText = `US$ ${minyak}`;
@@ -227,24 +204,25 @@
             const emerCont = document.getElementById('emergency-container');
             const emerRows = document.getElementById('emergency-rows');
 
+            // DECISION LOGIC
             if (kurs > 16500) {
-                pTitle.innerHTML = "Intervensi Fiskal RKP 2026: Lindungi Daya Beli.";
-                pStmt.innerHTML = "Saudara-saudaraku, tekanan kurs global tidak boleh membebani piring nasi rakyat. Sesuai target RPJMN, saya instruksikan penebalan subsidi pangan dan akselerasi Makan Bergizi Gratis detik ini juga.";
-                pDilema.innerHTML = "Dilema: Menjaga kesehatan APBN (Defisit 2,5%) vs Perlindungan langsung rakyat miskin yang disuarakan LBH/YLBHI. Presiden memilih opsi kedua.";
-                pTarget.innerHTML = "Menteri Keuangan, Mensos, & Bapanas. (Target: Stabilitas Harga H+7).";
-                kStatus.innerText = "Tekanan Kurs"; kStatus.className = "text-[10px] font-bold mt-1 text-[#e3120b] uppercase italic";
+                pTitle.innerText = "Intervensi Fiskal RKP 2026: Lindungi Rakyat.";
+                pStmt.innerText = "Tekanan kurs global tidak boleh membebani piring nasi rakyat. Saya instruksikan penebalan subsidi pangan dan akselerasi Makan Bergizi Gratis (MBG) detik ini juga.";
+                pDilema.innerText = "Dilema: Menjaga defisit fiskal APBN (Target 2,5%) vs Perlindungan rakyat yang disuarakan koalisi LBH-YLBHI. Presiden memprioritaskan keselamatan rakyat.";
+                pTarget.innerText = "Menteri Keuangan, Mensos, & Kepala Bapanas.";
+                kStatus.innerText = "Tekanan Kurs"; kStatus.className = "text-[10px] font-bold mt-1 text-[#e3120b] uppercase italic font-bold";
+                
                 emerCont.classList.remove('hidden');
                 renderChart(13680);
                 emerRows.innerHTML = `
-                    <tr><td class="py-4 font-bold text-red-600">Menkeu</td><td class="py-4 italic">Realokasi belanja non-prioritas untuk Subsidi Pangan.</td></tr>
-                    <tr><td class="py-4 font-bold text-red-600">Bapanas</td><td class="py-4 italic">Operasi pasar beras di 514 titik (Deadline H+3).</td></tr>
-                    <tr><td class="py-4 font-bold text-red-600">Mensos</td><td class="py-4 italic">Pencairan BLT Mitigasi Risiko Pangan (H+7).</td></tr>
+                    <tr><td class="py-4 font-bold text-red-600">Menkeu</td><td class="py-4 italic font-bold">Realokasi belanja non-prioritas untuk Subsidi Pangan.</td></tr>
+                    <tr><td class="py-4 font-bold text-red-600">Bapanas</td><td class="py-4 italic font-bold">Operasi pasar beras di 514 titik (Deadline H+3).</td></tr>
+                    <tr><td class="py-4 font-bold text-red-600">Mensos</td><td class="py-4 italic font-bold">Pencairan BLT Mitigasi Risiko Pangan (H+7).</td></tr>
                 `;
             } else {
-                pTitle.innerHTML = "Transformasi SDM & Hilirisasi Nasional.";
-                pStmt.innerHTML = "Stabilitas ekonomi memungkinkan kita memperluas cakupan Makan Bergizi Gratis (MBG) & target penurunan stunting SSGI di bawah 14%.";
-                pDilema.innerHTML = "Pemanfaatan ruang fiskal aman untuk investasi SDM melalui anggaran pendidikan terbesar (20% APBN).";
-                pTarget.innerHTML = "Kementerian Investasi & Menko Perekonomian.";
+                pTitle.innerText = "Transformasi SDM & Hilirisasi Nasional.";
+                pStmt.innerText = "Stabilitas ekonomi memungkinkan kita memperluas cakupan Makan Bergizi Gratis (MBG) & target penurunan stunting SSGI.";
+                pTarget.innerText = "Kementerian Investasi & Menko Perekonomian.";
             }
         }
 
