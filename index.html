@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pusat Komando Presiden RI · RKP 2026</title>
+<title>War Room Presiden RI · Skimming Krisis</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=IBM+Plex+Mono:wght@400;700&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -14,7 +14,6 @@
   --serif:'Playfair Display',Georgia,serif;
   --sans:'IBM Plex Sans',system-ui,sans-serif;
 }
-html{font-size:14px}
 body{background:var(--paper);color:var(--ink);font-family:var(--sans);min-height:100vh}
 .top-bar{height:5px;background:var(--red)}
 
@@ -24,52 +23,48 @@ header{padding:18px 36px 14px;border-bottom:1px solid var(--line);display:flex;j
 @keyframes bl{0%,100%{opacity:1}50%{opacity:.2}}
 h1{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.4rem);font-style:italic;font-weight:700;line-height:1}
 h1 b{color:var(--red);font-style:normal}
-.h-r{text-align:right}
-#clk{font-family:var(--mono);font-size:8.5px;color:var(--muted);line-height:2}
+#clk{font-family:var(--mono);font-size:9px;color:var(--muted);line-height:1.5;text-align:right}
 
 .wrap{max-width:1280px;margin:0 auto;padding:0 36px 60px}
 .sh{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:24px;padding:12px 0 8px;border-top:1px solid var(--line);display:flex;align-items:center;gap:8px}
 .sh::after{content:'';flex:1;height:1px;background:var(--line)}
 
-/* DECISION BOX */
-.dbox{border:1px solid var(--line);display:grid;grid-template-columns:1fr 280px;background:#fff}
-.dm{padding:20px 22px;border-right:1px solid var(--line)}
-.dtag{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:2px 8px;border-radius:2px;display:inline-block;margin-bottom:10px}
+/* DECISION ENGINE */
+.dbox{border:1px solid var(--line);display:grid;grid-template-columns:1fr 320px;background:#fff;box-shadow: 0 10px 30px rgba(0,0,0,0.05)}
+.dm{padding:24px;border-right:1px solid var(--line)}
+.dtag{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:3px 10px;border-radius:2px;display:inline-block;margin-bottom:12px}
 .ok{background:#e6f4ea;color:var(--green)}.warn{background:#fff4e0;color:var(--amber)}.crit{background:#fde8eb;color:var(--red)}
-#dt{font-family:var(--serif);font-size:clamp(.95rem,1.8vw,1.35rem);font-style:italic;font-weight:700;margin-bottom:8px;line-height:1.2}
-#db{font-size:.85rem;line-height:1.6;color:#333;border-left:3px solid var(--red);padding-left:12px;margin-bottom:15px}
+#dt{font-family:var(--serif);font-size:clamp(1.1rem,2vw,1.6rem);font-style:italic;font-weight:700;margin-bottom:10px;line-height:1.2}
+#db{font-size:.9rem;line-height:1.6;color:#333;border-left:4px solid var(--red);padding-left:16px;margin-bottom:20px}
 
-.ds{padding:14px 16px;display:flex;flex-direction:column;background:var(--cream)}
-.dbl{padding:10px 0;border-bottom:1px solid var(--line)}
-.dlbl{font-family:var(--mono);font-size:7px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
-.dv{font-size:.73rem;line-height:1.45;font-style:italic;font-weight:600}
+.ds{padding:18px;display:flex;flex-direction:column;background:var(--cream)}
+.dbl{padding:12px 0;border-bottom:1px solid var(--line)}
+.dlbl{font-family:var(--mono);font-size:7px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.dv{font-size:.8rem;line-height:1.45;font-weight:600;color:var(--red)} /* Fokus warna merah untuk dilema */
 
-#ins{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
-.ilbl{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:7px}
-#il{list-style:none;display:flex;flex-direction:column;gap:6px}
-#il li{font-size:.78rem;display:flex;gap:8px;line-height:1.4;font-weight:600}
-#il li::before{content:'●';color:var(--red);font-size:8px;margin-top:4px}
+#ins{margin-top:15px;padding-top:15px;border-top:1px dashed var(--line)}
+.ilbl{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+#il{list-style:none;display:flex;flex-direction:column;gap:8px}
+#il li{font-size:.85rem;display:flex;gap:10px;line-height:1.4;font-weight:600}
+#il li::before{content:'→';color:var(--red);font-weight:bold}
 
-/* GRID SYSTEM */
+/* GRID */
 .live-row{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);background:#fff}
 .live-cell{border-right:1px solid var(--line);display:flex;flex-direction:column}
-.live-cell:last-child{border-right:none}
-.live-cell-head{padding:10px 14px 6px;border-bottom:1px solid var(--line);min-height:85px}
-.lc-num{font-family:var(--mono);font-size:7px;color:var(--muted);text-transform:uppercase}
-.lc-name{font-family:var(--serif);font-size:.8rem;font-weight:700;font-style:italic}
-.lc-why{font-size:.65rem;color:var(--muted);line-height:1.3;margin-top:2px}
-.lc-body{flex:1;min-height:100px}
+.live-cell-head{padding:12px 15px;border-bottom:1px solid var(--line);min-height:90px}
+.lc-name{font-family:var(--serif);font-size:.85rem;font-weight:700;font-style:italic}
+.lc-why{font-size:.68rem;color:var(--muted);line-height:1.4;margin-top:4px}
+.lc-body{flex:1;min-height:120px}
 
 .pgrid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-bottom:none}
-.pc{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:15px;background:white}
-.pc:hover{background:var(--cream)}
-.pn{font-family:var(--mono);font-size:7px;font-weight:700;color:var(--muted)}
-.pl{font-family:var(--serif);font-size:.85rem;font-weight:700;font-style:italic}
-.pv{font-family:var(--mono);font-size:1.1rem;font-weight:700;margin:5px 0}
-.ps{font-size:.75rem;line-height:1.5;color:var(--ink);background:#f9f9f9;padding:8px;border-radius:4px;margin-top:8px;border-left:2px solid var(--line)}
+.pc{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px;background:white;transition: 0.2s}
+.pc:hover{background:#fdfdfd; transform: translateY(-2px); box-shadow: inset 0 -3px 0 var(--red)}
+.pn{font-family:var(--mono);font-size:7px;font-weight:700;color:var(--muted);text-transform:uppercase}
+.pl{font-family:var(--serif);font-size:.95rem;font-weight:700;font-style:italic}
+.ps{font-size:.8rem;line-height:1.6;color:var(--ink);background:#f4f1ea;padding:12px;border-radius:2px;margin-top:12px;border-left:3px solid var(--red);font-style: normal}
 
-footer{border-top:1px solid var(--line);padding:12px 36px;display:flex;justify-content:space-between;gap:8px}
-.ft{font-family:var(--mono);font-size:7.5px;text-transform:uppercase;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:15px 36px;display:flex;justify-content:space-between;gap:8px}
+.ft{font-family:var(--mono);font-size:8px;text-transform:uppercase;color:var(--muted)}
 
 @media(max-width:960px){
   .dbox, .live-row, .pgrid {grid-template-columns:1fr}
@@ -81,120 +76,112 @@ footer{border-top:1px solid var(--line);padding:12px 36px;display:flex;justify-c
 
 <header>
   <div>
-    <div class="h-tag"><span class="dot"></span>Sistem Monitoring Kebijakan · LIVE</div>
-    <h1>War Room <b>Simulasi</b> Presiden RI</h1>
+    <div class="h-tag"><span class="dot"></span>Evidence-Based Intelligence Desk · 2026</div>
+    <h1>War Room <b>Situasi</b> Presiden RI</h1>
   </div>
-  <div class="h-r">
-    <div id="clk">—</div>
-    <div style="font-family:var(--mono);font-size:7.5px;color:var(--amber);margin-top:4px">RPJMN 2025–2029</div>
-  </div>
+  <div id="clk">—</div>
 </header>
 
 <div class="wrap">
 
-<div class="sh">⚖ Decision Engine — Arahan Strategis</div>
+<div class="sh">⚖ Skimming Kebijakan — Prioritas Utama</div>
 <div class="dbox">
   <div class="dm">
-    <span id="dtag" class="dtag ok">● Menghubungkan Intelijen</span>
-    <div id="dt">Memproses data sektor utama...</div>
-    <div id="db">Menganalisis kesejahteraan rakyat dan stabilitas nasional berdasarkan laporan terbaru.</div>
+    <span id="dtag" class="dtag ok">● Menghubungkan Intelijen Nasional</span>
+    <div id="dt">Menganalisis Titik Kritis Nasional...</div>
+    <div id="db">Data ekonomi menunjukkan tekanan pada nilai tukar, sementara laporan sektoral menyoroti resistensi publik terhadap beberapa program prioritas.</div>
     <div id="ins">
-      <div class="ilbl">Instruksi Presiden (Arahan Segera)</div>
+      <div class="ilbl">Arahan Presiden (Tindakan Segera)</div>
       <ul id="il"></ul>
     </div>
   </div>
   <div class="ds">
-    <div class="dbl"><div class="dlbl">Koordinasi Teknis</div><div class="dv" id="dtar">—</div></div>
-    <div class="dbl"><div class="dlbl">Fokus RKP 2026</div><div class="dv">Pertumbuhan Inklusif & Hilirisasi</div></div>
+    <div class="dbl"><div class="dlbl">Dilema Anggaran</div><div class="dv">Defisit APBN vs Beban Makan Gratis</div></div>
+    <div class="dbl"><div class="dlbl">Koordinasi Krusial</div><div class="dv">Menteri Keuangan · Menko PMK</div></div>
   </div>
 </div>
 
-<div class="sh">📡 Indikator Makro & Bencana (Realtime)</div>
+<div class="sh">📡 Arus Data Realtime (Ekonomi & Bencana)</div>
 <div class="live-row">
   <div class="live-cell">
     <div class="live-cell-head">
-      <span class="lc-num">Pilar 10</span>
-      <div class="lc-name">IHSG (Pasar Modal)</div>
-      <div class="lc-why">Kepercayaan investor global terhadap stabilitas politik.</div>
+      <div class="lc-name">IHSG (Pasar Saham)</div>
+      <div class="lc-why">Sinyal kepercayaan modal asing. Perhatikan jika ada arus keluar (capital outflow) mendadak.</div>
     </div>
     <div class="lc-body">
-      <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"IDX:COMPOSITE","width":"100%","height":120,"locale":"id","colorTheme":"light","isTransparent":true}</script></div>
+      <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"IDX:COMPOSITE","width":"100%","height":125,"locale":"id","colorTheme":"light","isTransparent":true}</script></div>
     </div>
   </div>
   <div class="live-cell">
     <div class="live-cell-head">
-      <span class="lc-num">Pilar 02</span>
-      <div class="lc-name">Kurs USD/IDR</div>
-      <div class="lc-why">Stabilitas moneter dan beban utang luar negeri.</div>
+      <div class="lc-name">Kurs USD / IDR</div>
+      <div class="lc-why">Data Forex Realtime. Threshold kritis: Rp16.200. Mempengaruhi harga BBM dan impor pangan.</div>
     </div>
     <div class="lc-body">
-      <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"FX:USDIDR","width":"100%","height":120,"locale":"id","colorTheme":"light","isTransparent":true}</script></div>
+      <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"FX_IDC:USDIDR","width":"100%","height":125,"locale":"id","colorTheme":"light","isTransparent":true}</script></div>
     </div>
   </div>
   <div class="live-cell">
     <div class="live-cell-head">
-      <span class="lc-num">Pilar 07</span>
-      <div class="lc-name">Brent Oil</div>
-      <div class="lc-why">Menentukan tekanan subsidi energi pada APBN.</div>
+      <div class="lc-name">Brent Crude Oil</div>
+      <div class="lc-why">Komponen utama subsidi energi. Di atas $85/bbl akan memaksa realokasi anggaran bansos.</div>
     </div>
     <div class="lc-body">
-      <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"TVC:UKOIL","width":"100%","height":120,"locale":"id","colorTheme":"light","isTransparent":true}</script></div>
+      <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol":"TVC:UKOIL","width":"100%","height":125,"locale":"id","colorTheme":"light","isTransparent":true}</script></div>
     </div>
   </div>
-  <div class="live-cell" style="padding:14px; background: #fffcf5">
-    <span class="lc-num">Pilar 09</span>
-    <div class="lc-name">BMKG (Bencana)</div>
-    <div id="bmkg-mag" style="font-size:1.8rem; font-weight:700; color:var(--red)">—</div>
-    <div id="bmkg-loc" style="font-size:0.7rem; color:var(--muted)">Menghubungkan API...</div>
-    <div id="bmkg-badge" class="dtag" style="margin-top:10px">Status: Sinkron</div>
+  <div class="live-cell" style="padding:15px; background: #fffcf5">
+    <span class="pn">09 · Kebencanaan</span>
+    <div class="lc-name">Gempa Terkini (BMKG)</div>
+    <div id="bmkg-mag" style="font-size:1.8rem; font-weight:700; color:var(--red); margin: 5px 0">—</div>
+    <div id="bmkg-loc" style="font-size:0.75rem; color:var(--muted); line-height:1.4">Menghubungkan...</div>
+    <div id="bmkg-badge" class="dtag" style="margin-top:10px; background:#eee">Status: Sync</div>
   </div>
 </div>
 
-<div class="sh">📋 Laporan Intelijen Sektoral (Skimming Desk)</div>
+<div class="sh">📋 Briefing Intelijen (Skimming Berita Kritis)</div>
 <div class="pgrid">
   <div class="pc">
     <span class="pn">01 · Pangan</span>
-    <div class="pl">Ketahanan Pangan</div>
-    <div class="pv">Beras: Rp13.6k</div>
-    <div class="ps" id="intel-pangan">Menganalisis stok Bulog dan harga pasar induk...</div>
+    <div class="pl">Krisis Beras & Pupuk</div>
+    <div class="ps" id="intel-pangan">Laporan: Distribusi pupuk subsidi tersendat di Jateng & Jatim. Harga beras medium di pasar daerah melampaui HET sebesar 8%.</div>
   </div>
 
   <div class="pc">
-    <span class="pn">04 · Industri</span>
-    <div class="pl">PMI Manufaktur</div>
-    <div class="pv">53.8 (Ekspansi)</div>
-    <div class="ps" id="intel-industri">Meninjau dampak hilirisasi mineral di Sulawesi & Maluku Utara...</div>
+    <span class="pn">03 · Sentimen Sosial</span>
+    <div class="pl">Kritik Program MBG</div>
+    <div class="ps" id="intel-sentimen">Analisis Media: Gelombang kritik terhadap kualitas gizi di proyek percontohan. Publik menuntut transparansi vendor dan keberlanjutan fiskal 2026.</div>
   </div>
 
   <div class="pc">
-    <span class="pn">03 · Sentimen Publik</span>
-    <div class="pl">Analisis Media</div>
-    <div class="pv">Netral-Positif</div>
-    <div class="ps" id="intel-sentimen">Skimming opini publik terkait kebijakan pajak dan bansos...</div>
+    <span class="pn">04 · Ekonomi Riil</span>
+    <div class="pl">Daya Beli & PHK</div>
+    <div class="ps" id="intel-industri">Skimming: Sektor tekstil kembali umumkan efisiensi tenaga kerja. Daya beli kelas menengah menurun tajam pasca kenaikan PPN.</div>
   </div>
 </div>
 
 </div>
 
 <footer>
-  <span class="ft">War Room Presiden RI © 2026</span>
-  <span class="ft" id="sync-status">Status: Terkoneksi ke Pusat Data Nasional</span>
+  <span class="ft">Situational Awareness Board · Konstitusi Pasal 33</span>
+  <span class="ft" id="sync-status">Data: TradingView Global · BMKG API · Intelijen Sintetis</span>
 </footer>
 
 <script>
 const $ = id => document.getElementById(id);
 
-// Simulasi Data Skimming Berita Terkini
+// Simpan data intelijen yang lebih realistis dan pahit
 const mockIntel = {
-  pangan: "Stok nasional aman, namun ada kenaikan harga pupuk di tingkat petani. Perlu pengawasan jalur distribusi.",
-  industri: "Investasi smelter baru masuk tahap konstruksi. Penyerapan tenaga kerja lokal naik 15% di sektor tambang.",
-  sentimen: "Masyarakat menyoroti kemudahan akses modal UMKM. Sinyal positif pada program Makan Bergizi Gratis."
+  pangan: "Darurat distribusi: Stok Bulog di gudang melimpah, namun rantai logistik ke wilayah 3T macet total akibat cuaca ekstrem.",
+  industri: "Hilirisasi Mineral: Protes lokal di smelter Morowali meningkat terkait isu lingkungan. Risiko hambatan operasional jangka pendek.",
+  sentimen: "Sentimen MBG: Kritik akademisi terkait 'crowding out effect' pada anggaran pendidikan mulai memengaruhi persepsi investor."
 };
 
-// Jam Digital
-setInterval(() => {
-  $('clk').innerText = new Date().toLocaleString('id-ID', {weekday:'long', day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit'});
-}, 1000);
+function updateClock() {
+  const now = new Date();
+  $('clk').innerHTML = now.toLocaleDateString('id-ID', {weekday:'long', day:'numeric', month:'long'}) + '<br>' + now.toLocaleTimeString('id-ID');
+}
+setInterval(updateClock, 1000);
 
 async function fetchBMKG() {
   try {
@@ -207,33 +194,30 @@ async function fetchBMKG() {
   } catch { return 0; }
 }
 
-async function runEngine() {
+async function runWarRoom() {
   const mag = await fetchBMKG();
   
-  // Update Skimming Berita
+  // Update Skimming Berita Kritis
   $('intel-pangan').innerText = mockIntel.pangan;
   $('intel-industri').innerText = mockIntel.industri;
   $('intel-sentimen').innerText = mockIntel.sentimen;
 
-  // Decision Logic
-  const dtag = $('dtag'), dt = $('dt'), db = $('db'), dtar = $('dtar'), il = $('il');
+  const dtag = $('dtag'), dt = $('dt'), db = $('db'), il = $('il');
 
   if(mag >= 6.0) {
-    dtag.className = 'dtag crit'; dtag.innerText = '● Darurat Bencana';
-    dt.innerText = "Respon Cepat Gempa Signifikan";
-    db.innerText = "Gempa besar terdeteksi. Prioritaskan evakuasi dan aktivasi jalur logistik darurat bantuan sosial.";
-    dtar.innerText = "Kepala BNPB, Panglima TNI";
-    il.innerHTML = "<li>Aktivasi dana darurat bencana nasional</li><li>Mobilisasi tim medis ke koordinat terdampak</li>";
+    dtag.className = 'dtag crit'; dtag.innerText = '● Darurat Nasional';
+    dt.innerText = "Respon Krisis: Bencana Alam Skala Besar";
+    db.innerText = "Laporan gempa M" + mag + " masuk. Fokuskan seluruh resource untuk penyelamatan dan amankan stok pangan di lokasi.";
+    il.innerHTML = "<li>Instruksikan Panglima TNI geser armada angkut logistik</li><li>Aktivasi dana darurat BA 999</li>";
   } else {
-    dtag.className = 'dtag ok'; dtag.innerText = '● Stabil - Fokus Pembangunan';
-    dt.innerText = "Akselerasi Program Strategis Nasional";
-    db.innerText = "Kondisi makro stabil. Fokus pada pemerataan distribusi pangan dan penguatan daya beli masyarakat.";
-    dtar.innerText = "Menko Perekonomian, Mendagri";
-    il.innerHTML = "<li>Pantau stabilitas harga bahan pokok menjelang Ramadhan</li><li>Percepat penyaluran bantuan UMKM sektor industri kreatif</li>";
+    dtag.className = 'dtag warn'; dtag.innerText = '● Waspada Ekonomi & Sosial';
+    dt.innerText = "Evaluasi Program Strategis & Stabilitas";
+    db.innerText = "Tekanan pada Rupiah dan kritik program Makan Bergizi (MBG) membutuhkan klarifikasi kebijakan publik segera untuk menjaga stabilitas.";
+    il.innerHTML = "<li>Evaluasi ulang vendor penyedia MBG di daerah bermasalah</li><li>Instruksikan BI lakukan intervensi pasar spot Rupiah</li><li>Percepat penyaluran bantuan pangan untuk redam gejolak harga</li>";
   }
 }
 
-window.onload = runEngine;
+window.onload = runWarRoom;
 </script>
 </body>
 </html>
