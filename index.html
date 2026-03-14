@@ -11,7 +11,7 @@
         --blue: #0d4a8c; --amber: #b87000; --green: #1a6b2e;
         --serif: 'Playfair Display', serif; --mono: 'IBM Plex Mono', monospace; --sans: 'IBM Plex Sans', sans-serif;
     }
-    body { background: var(--paper); color: var(--ink); font-family: var(--sans); margin: 0; padding: 0; }
+    body { background: var(--paper); color: var(--ink); font-family: var(--sans); margin: 0; padding: 0; overflow-x: hidden; }
     .top-bar { height: 6px; background: linear-gradient(90deg, var(--red) 50% , #fff 50%); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--line); }
     
     header { padding: 20px 36px; border-bottom: 1px solid var(--line); background: #fff; display: flex; justify-content: space-between; align-items: center; }
@@ -22,40 +22,57 @@
     
     .wrap { max-width: 1400px; margin: 0 auto; padding: 25px; }
 
-    /* 10 PILAR GRID */
-    .sh { font-family: var(--mono); font-size: 9px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin: 30px 0 15px; display: flex; align-items: center; gap: 10px; }
+    /* PANEL PROTOKOL SIMULASI */
+    .info-panel { background: #e9e3d7; border-left: 5px solid var(--red); padding: 25px; margin-bottom: 35px; box-shadow: 5px 5px 0 rgba(0,0,0,0.05); }
+    .info-title { font-family: var(--serif); font-size: 1.2rem; font-weight: 700; color: var(--red); display: block; margin-bottom: 15px; font-style: italic; }
+    .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; font-size: 0.9rem; line-height: 1.6; }
+    .info-grid strong { font-family: var(--mono); font-size: 0.75rem; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 5px; }
+
+    /* AMANAT PRESIDEN */
+    .hero-statement { background: #fff; border: 2px solid var(--ink); padding: 45px; margin-bottom: 30px; position: relative; box-shadow: 15px 15px 0 var(--line); }
+    .label-top { position: absolute; top: -12px; left: 30px; background: var(--red); color: #fff; padding: 3px 15px; font-family: var(--mono); font-size: 10px; font-weight: 700; }
+    .statement-text { font-family: var(--serif); font-size: clamp(1.4rem, 2.8vw, 2rem); font-style: italic; line-height: 1.4; margin: 0 0 25px 0; }
+    
+    /* MATRIKS EKSEKUTIF */
+    .exec-matrix { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; background: var(--ink); color: #fff; padding: 25px; font-family: var(--mono); margin-bottom: 40px; }
+    .exec-item { border-left: 1px solid #444; padding-left: 20px; }
+    .exec-item:first-child { border-left: none; padding-left: 0; }
+    .exec-lbl { font-size: 8px; color: var(--line); text-transform: uppercase; margin-bottom: 8px; display: block; }
+    .exec-val { font-size: 0.85rem; line-height: 1.5; color: #eee; }
+
+    /* PILAR GRID */
+    .sh { font-family: var(--mono); font-size: 9px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin: 40px 0 20px; display: flex; align-items: center; gap: 10px; }
     .sh::after { content: ''; flex: 1; height: 1px; background: var(--line); }
-    .pgrid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 40px; }
-    .pc { background: #fff; border: 1px solid var(--line); padding: 15px; border-top-width: 5px; min-height: 110px; }
+    
+    .pgrid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; margin-bottom: 50px; }
+    .pc { background: #fff; border: 1px solid var(--line); padding: 18px; border-top-width: 5px; min-height: 160px; transition: transform 0.2s; }
+    .pc:hover { transform: translateY(-5px); }
     .pc.stabil { border-top-color: var(--green); }
     .pc.waspada { border-top-color: var(--amber); }
     .pc.darurat { border-top-color: var(--red); }
-    .pc-title { font-weight: 700; display: block; margin-bottom: 5px; font-family: var(--serif); font-size: 1rem; }
-    .pc-brief { font-size: 0.75rem; color: #444; line-height: 1.4; }
+    .pc-num { font-family: var(--mono); font-size: 8px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; color: var(--muted); margin-bottom: 10px; }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; display: block; }
+    .s-stabil { background: var(--green); }
+    .s-waspada { background: var(--amber); }
+    .s-darurat { background: var(--red); }
+    .pc-title { font-weight: 700; display: block; margin-bottom: 8px; font-family: var(--serif); font-style: italic; font-size: 1.1rem; }
+    .pc-brief { font-size: 0.8rem; color: #444; line-height: 1.5; }
 
-    /* TERMINAL KOMANDO (INTERAKTIF) */
-    .terminal-container { background: #1a1a1a; color: #00ff41; font-family: var(--mono); padding: 30px; border-radius: 4px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); margin-bottom: 50px; border: 1px solid #333; }
-    .term-header { border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 20px; color: #aaa; font-size: 0.7rem; display: flex; justify-content: space-between; }
-    .term-input-line { display: flex; gap: 10px; align-items: center; }
-    .term-prompt { color: var(--red); font-weight: 700; }
-    .term-field { background: transparent; border: none; color: #00ff41; font-family: var(--mono); font-size: 1rem; flex: 1; outline: none; }
-    
-    #term-result { margin-top: 25px; display: none; border-top: 1px solid #333; padding-top: 20px; animation: fadeIn 0.4s; }
-    .flow-box { display: flex; gap: 15px; align-items: center; margin: 15px 0; flex-wrap: wrap; }
-    .flow-node { border: 1px solid #00ff41; padding: 5px 12px; font-size: 0.8rem; }
-    .term-meta { color: #888; font-size: 0.75rem; line-height: 1.6; margin-top: 15px; }
+    /* LAPORAN KEBIJAKAN (POLICY BRIEF) */
+    .policy-brief { background: #fff; border: 1px solid var(--line); padding: 50px; max-width: 1000px; margin: 0 auto 60px; position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.05); }
+    .pb-header { text-align: center; border-bottom: 2px double var(--ink); padding-bottom: 25px; margin-bottom: 35px; }
+    .pb-header h2 { font-family: var(--serif); font-size: 1.8rem; text-transform: uppercase; letter-spacing: 2px; margin: 0; }
+    .pb-section { margin-bottom: 30px; }
+    .pb-title { font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: 12px; display: block; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+    .pb-content { font-size: 0.95rem; line-height: 1.8; text-align: justify; color: #333; }
+    .pb-content ul { padding-left: 20px; }
+    .pb-content li { margin-bottom: 12px; }
 
-    /* POLICY BRIEF */
-    .policy-brief { background: #fff; border: 1px solid var(--line); padding: 40px; max-width: 900px; margin: 0 auto 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-    .pb-header { text-align: center; border-bottom: 2px double var(--ink); padding-bottom: 20px; margin-bottom: 30px; }
-    .pb-section { margin-bottom: 20px; }
-    .pb-title { font-family: var(--mono); font-size: 10px; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: 8px; display: block; }
-    .pb-content { font-size: 0.9rem; line-height: 1.6; text-align: justify; }
+    footer { background: var(--ink); color: #fff; padding: 25px 36px; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 9px; }
+    .btn-sync { background: var(--red); color: #fff; border: none; padding: 8px 16px; font-family: var(--mono); font-size: 10px; cursor: pointer; transition: 0.2s; border-radius: 2px; }
+    .btn-sync:hover { filter: brightness(1.2); }
 
-    footer { background: var(--ink); color: #fff; padding: 20px 36px; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 9px; }
-
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @media (max-width: 1000px) { .pgrid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 1100px) { .pgrid { grid-template-columns: repeat(2, 1fr); } .exec-matrix, .info-grid { grid-template-columns: 1fr; gap: 15px; } .policy-brief { padding: 30px; } }
 </style>
 </head>
 <body>
@@ -65,130 +82,208 @@
 <header>
     <div class="brand-box">
         <div class="sigap-tag">SIGAP</div>
-        <div class="brand-title">RI <span style="font-weight: 400; font-size: 0.8rem; color: var(--muted); font-style: italic;">— Sistem Informasi Gardu Analisis Presiden</span></div>
+        <div class="brand-title">RI <span style="font-weight: 400; font-size: 0.9rem; color: var(--muted); font-style: italic; margin-left: 10px;">— Sistem Informasi Gardu Analisis Presiden</span></div>
     </div>
-    <div class="h-meta" id="real-time-clock">MEMUAT WAKTU...</div>
+    <div class="h-meta">
+        <div id="real-time-clock">MEMUAT DATA WAKTU...</div>
+        <button class="btn-sync" onclick="syncAll()">⟳ SINKRONISASI NASIONAL</button>
+    </div>
 </header>
 
 <div class="wrap">
 
-    <div class="sh">📡 Pantauan Indikator Strategis</div>
-    <div class="pgrid">
-        <div class="pc waspada"><span class="pc-title">01 Pangan</span><div class="pc-brief">Monitoring distribusi beras medium.</div></div>
-        <div class="pc stabil"><span class="pc-title">02 Moneter</span><div class="pc-brief">Kurs Rupiah terjaga terhadap USD.</div></div>
-        <div class="pc darurat"><span class="pc-title">03 Sosial</span><div class="pc-brief">Aspirasi publik terkait keadilan bantuan.</div></div>
-        <div class="pc stabil"><span class="pc-title">04 Industri</span><div class="pc-brief">Hilirisasi mineral fase II dimulai.</div></div>
-        <div class="pc stabil"><span class="pc-title">05 Bansos</span><div class="pc-brief">Sinkronisasi data DTKS nasional.</div></div>
-        <div class="pc waspada"><span class="pc-title">06 Energi</span><div class="pc-brief">Stok BBM wilayah kepulauan terluar.</div></div>
-        <div class="pc stabil"><span class="pc-title">07 Logistik</span><div class="pc-brief">Efisiensi bongkar muat pelabuhan hub.</div></div>
-        <div class="pc stabil"><span class="pc-title">08 Kesehatan</span><div class="pc-brief">Layanan kesehatan primer terintegrasi.</div></div>
-        <div class="pc stabil" id="pc-bencana"><span class="pc-title">09 Krisis</span><div class="pc-brief" id="val-mag">Status BMKG: Normal.</div></div>
-        <div class="pc stabil"><span class="pc-title">10 Investasi</span><div class="pc-brief">IHSG menguat pada sektor riil.</div></div>
-    </div>
-
-    <div class="sh">💻 Terminal Komando Eksekutif (Orkestrasi Kebijakan)</div>
-    <div class="terminal-container">
-        <div class="term-header">
-            <span>SIGAP_OS v2026.3.1 - ENCRYPTED CONNECTION</span>
-            <span>USER: PRESIDEN_RI_SIMULASI</span>
-        </div>
-        <div class="term-input-line">
-            <span class="term-prompt">C:\PROSES_ANALISIS></span>
-            <input type="text" id="term-field" class="term-field" placeholder="Masukkan Isu (Contoh: Harga Beras / Izin Tambang)" onkeypress="handleEnter(event)">
-        </div>
-
-        <div id="term-result">
-            <div id="term-status" style="margin-bottom: 10px; color: #fff;">[ANALYSIS_IN_PROGRESS...]</div>
-            <div class="flow-box" id="term-flow">
-                </div>
-            <div class="term-meta">
-                <div id="term-law"><strong>DASAR HUKUM:</strong> -</div>
-                <div id="term-news" style="color: #008f11;"><strong>DATA REALTIME:</strong> Memindai laporan sektoral...</div>
+    <div class="info-panel">
+        <span class="info-title">Dialektika Kebijakan & Konstruksi Data</span>
+        <div class="info-grid">
+            <div>
+                <strong>Sintesis Data Terintegrasi</strong>
+                Platform ini mengagregasi parameter makro secara langsung melalui API publik (BMKG) dan indikator pasar global, diselaraskan dengan proyeksi strategis ketahanan nasional 2026.
+            </div>
+            <div>
+                <strong>Filosofi Pengelolaan</strong>
+                Setiap variabel dianalisis melalui lensa Konstitusi guna memastikan keputusan teknokratis tetap memiliki landasan moral dan keadilan sosial bagi seluruh rakyat.
+            </div>
+            <div>
+                <strong>Objektif Edukasi</strong>
+                Mendemonstrasikan proses pengambilan keputusan yang sinergis: menerjemahkan kompleksitas data mentah menjadi instruksi eksekutif yang solid dan terukur.
             </div>
         </div>
     </div>
+    
+    <div class="hero-statement">
+        <div class="label-top">AMANAT & ARAHAN STRATEGIS</div>
+        <p class="statement-text" id="presiden-msg">
+            "Negara harus hadir sebagai pelindung yang tak tergoyahkan. Setiap kebijakan yang kita ambil adalah ikhtiar kolektif untuk memastikan keadilan sosial hadir di setiap rumah tangga Indonesia."
+        </p>
+        <div style="font-family: var(--mono); font-size: 9px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 15px; display: flex; justify-content: space-between;">
+            <span>KONSTITUSI: PASAL 33 UUD 1945</span>
+            <span>PRINSIP: PANCASILA & KETAHANAN NASIONAL</span>
+        </div>
+    </div>
 
-    <div class="sh">📝 Laporan Kebijakan (Policy Brief)</div>
+    <div class="exec-matrix">
+        <div class="exec-item">
+            <span class="exec-lbl">Orkestrasi Sektoral</span>
+            <div class="exec-val" id="exec-target">Menteri Koordinator, Pimpinan Lembaga Tinggi, Pemerintah Daerah</div>
+        </div>
+        <div class="exec-item">
+            <span class="exec-lbl">Mandat Operasional</span>
+            <div class="exec-val" id="exec-action">Memperkuat efisiensi rantai pasok domestik dan stabilisasi harga kebutuhan pokok melalui intervensi fiskal yang disiplin.</div>
+        </div>
+        <div class="exec-item">
+            <span class="exec-lbl">Parameter Keberhasilan</span>
+            <div class="exec-val" id="exec-goal">Inflasi Terkendali & Indeks Kepercayaan Masyarakat Jangka Panjang</div>
+        </div>
+        <div class="exec-item">
+            <span class="exec-lbl">Evaluasi Berkala</span>
+            <div class="exec-val" id="exec-deadline">Siklus Monitoring Kabinet Terbatas (7 Hari Kerja)</div>
+        </div>
+    </div>
+
+    <div class="sh">📡 Status Indikator Strategis Nasional</div>
+    <div class="pgrid">
+        <div class="pc waspada">
+            <div class="pc-num"><span>01 · PANGAN</span> <span class="status-dot s-waspada"></span></div>
+            <span class="pc-title">Ketahanan Pangan</span>
+            <div class="pc-brief">Fluktuasi harga komoditas musiman memerlukan pengawasan ketat terhadap distribusi cadangan pangan nasional.</div>
+        </div>
+        <div class="pc waspada">
+            <div class="pc-num"><span>02 · MONETER</span> <span class="status-dot s-waspada"></span></div>
+            <span class="pc-title">Ekonomi Makro</span>
+            <div class="pc-brief">Dinamika nilai tukar memerlukan bauran kebijakan moneter yang responsif terhadap volatilitas pasar global.</div>
+        </div>
+        <div class="pc darurat">
+            <div class="pc-num"><span>03 · SOSIAL</span> <span class="status-dot s-darurat"></span></div>
+            <span class="pc-title">Sentimen Publik</span>
+            <div class="pc-brief">Diperlukan penguatan strategi komunikasi terkait transparansi program strategis guna menjaga kepercayaan masyarakat.</div>
+        </div>
+        <div class="pc stabil">
+            <div class="pc-num"><span>04 · INDUSTRI</span> <span class="status-dot s-stabil"></span></div>
+            <span class="pc-title">Hilirisasi</span>
+            <div class="pc-brief">Ekspansi sektor pengolahan menunjukkan performa positif dalam meningkatkan nilai tambah ekspor nasional.</div>
+        </div>
+        <div class="pc stabil">
+            <div class="pc-num"><span>05 · FISKAL</span> <span class="status-dot s-stabil"></span></div>
+            <span class="pc-title">Dukungan Sosial</span>
+            <div class="pc-brief">Penyaluran bantuan sosial terus dioptimalkan melalui integrasi data yang lebih akurat dan transparan.</div>
+        </div>
+        <div class="pc waspada">
+            <div class="pc-num"><span>06 · ENERGI</span> <span class="status-dot s-waspada"></span></div>
+            <span class="pc-title">Subsidi Energi</span>
+            <div class="pc-brief">Pengawasan kuota subsidi energi dilakukan secara ketat untuk menjaga keberlanjutan postur fiskal APBN.</div>
+        </div>
+        <div class="pc stabil">
+            <div class="pc-num"><span>07 · LOGISTIK</span> <span class="status-dot s-stabil"></span></div>
+            <span class="pc-title">Infrastruktur</span>
+            <div class="pc-brief">Target konektivitas antar-wilayah terus menunjukkan kemajuan dalam mendukung mobilitas ekonomi rakyat.</div>
+        </div>
+        <div class="pc stabil">
+            <div class="pc-num"><span>08 · SDM</span> <span class="status-dot s-stabil"></span></div>
+            <span class="pc-title">Kesehatan</span>
+            <div class="pc-brief">Penguatan sistem kesehatan primer dan preventif berhasil menurunkan angka beban rujukan nasional.</div>
+        </div>
+        <div class="pc stabil" id="pc-bencana">
+            <div class="pc-num"><span>09 · KRISIS</span> <span class="status-dot s-stabil" id="dot-bencana"></span></div>
+            <span class="pc-title">Kebencanaan</span>
+            <div class="pc-brief" id="val-mag">Status: Aman. Sistem pemantauan BMKG tersinkronisasi.</div>
+        </div>
+        <div class="pc stabil">
+            <div class="pc-num"><span>10 · INVESTASI</span> <span class="status-dot s-stabil"></span></div>
+            <span class="pc-title">Pasar Modal</span>
+            <div class="pc-brief">Keyakinan investor terhadap stabilitas fundamental ekonomi Indonesia tetap berada pada zona positif.</div>
+        </div>
+    </div>
+
+    <div class="sh">📝 Laporan Kebijakan Strategis</div>
+    
     <div class="policy-brief">
         <div class="pb-header">
-            <h2 style="font-family: var(--serif); margin: 0;">Laporan Stabilitas Nasional</h2>
-            <p style="font-family: var(--mono); font-size: 9px; color: var(--muted);">NO: PB/SIGAP/2026/03</p>
+            <h2>Laporan Kebijakan: Stabilitas Nasional 2026</h2>
+            <p>NOMOR: PB/SIGAP-RI/001/III/2026 · KLASIFIKASI: STRATEGIS/TERBATAS</p>
         </div>
+        
         <div class="pb-section">
             <span class="pb-title">Ringkasan Eksekutif</span>
-            <div class="pb-content">Memastikan sinkronisasi antara data lapangan dan regulasi pusat guna menjaga daya beli rakyat serta ketahanan nasional terhadap gejolak eksternal.</div>
+            <div class="pb-content">
+                Meskipun fundamental ekonomi nasional berada dalam posisi ekspansif, terdapat urgensi untuk melakukan mitigasi terhadap tekanan harga pangan di tingkat daerah dan volatilitas nilai tukar. Pendekatan lintas sektoral diperlukan untuk memastikan daya beli masyarakat tetap terjaga di tengah ketidakpastian global.
+            </div>
         </div>
+
+        <div class="pb-section">
+            <span class="pb-title">Analisis Situasi Terkini</span>
+            <div class="pb-content">
+                <ul>
+                    <li><strong>Disrupsi Logistik:</strong> Hambatan distribusi di wilayah kepulauan memicu disparitas harga pangan pokok meskipun stok nasional mencukupi.</li>
+                    <li><strong>Dinamika Global:</strong> Kebijakan suku bunga luar negeri menuntut respon moneter yang presisi untuk menghindari arus modal keluar yang masif.</li>
+                </ul>
+            </div>
+        </div>
+
         <div class="pb-section">
             <span class="pb-title">Rekomendasi Strategis</span>
-            <div class="pb-content">Aktivasi pengawasan lintas kementerian untuk mencegah asimetri informasi pada distribusi logistik strategis di wilayah rawan.</div>
+            <div class="pb-content">
+                <ul>
+                    <li>Aktivasi koordinasi Tim Pengendali Inflasi Daerah (TPID) untuk memastikan kelancaran arus barang hingga ke pasar tradisional.</li>
+                    <li>Penguatan narasi publik mengenai keberlanjutan program perlindungan sosial untuk meredam spekulasi pasar dan sentimen negatif.</li>
+                    <li>Optimalisasi pemanfaatan cadangan devisa secara terukur guna memberikan kepastian bagi pelaku usaha sektor riil.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px; text-align: right; font-family: var(--mono); font-size: 11px;">
+            Ditetapkan di Jakarta,<br>
+            Tim Analis Strategis SIGAP RI
         </div>
     </div>
 
 </div>
 
 <footer>
-    <span>SIGAP RI · SISTEM INFORMASI KEPUTUSAN PRESIDEN</span>
-    <span id="sync-time">STATUS: TERKONEKSI</span>
+    <span>SIGAP RI · SISTEM INFORMASI KEPUTUSAN PRESIDEN · VERSI 2026.5</span>
+    <span id="sync-time">SINKRONISASI: TERKONEKSI</span>
 </footer>
 
 <script>
-    // LOGIKA TERMINAL
-    function handleEnter(e) {
-        if (e.key === 'Enter') {
-            const val = document.getElementById('term-field').value.toLowerCase();
-            const resultArea = document.getElementById('term-result');
-            const flowArea = document.getElementById('term-flow');
-            
-            resultArea.style.display = 'block';
-            document.getElementById('term-status').innerText = "[MENGANALISIS_STRUKTUR_KEWENANGAN...]";
-            
-            setTimeout(() => {
-                let flow = '';
-                let law = '';
-                let news = '';
-
-                if (val.includes('beras') || val.includes('pangan')) {
-                    flow = `<div class="flow-node">KEMENTAN</div><span>→</span><div class="flow-node">BAPANAS</div><span>→</span><div class="flow-node">BULOG</div><span>→</span><div class="flow-node">KEMENDAG</div>`;
-                    law = "UU No. 18/2012 (Pangan) & Perpres No. 66/2021.";
-                    news = "Laporan SPHP masuk: Stok aman untuk 6 bulan ke depan.";
-                } else if (val.includes('tambang') || val.includes('energi')) {
-                    flow = `<div class="flow-node">KESDM</div><span>→</span><div class="flow-node">BKPM</div><span>→</span><div class="flow-node">KLHK</div>`;
-                    law = "UU No. 3/2020 (Minerba).";
-                    news = "Hilirisasi Nikel fase III menunjukkan tren surplus.";
-                } else {
-                    flow = `<div class="flow-node">KEMENKO</div><span>→</span><div class="flow-node">KEMEN_TEKNIS</div><span>→</span><div class="flow-node">PEMDA</div>`;
-                    law = "UU No. 39/2008 (Kementerian Negara).";
-                    news = "Koordinasi lintas sektor sedang dioptimalkan.";
-                }
-
-                document.getElementById('term-status').innerText = "[ANALISIS_SELESAI_HASIL_DITEMUKAN]";
-                flowArea.innerHTML = flow;
-                document.getElementById('term-law').innerHTML = "<strong>DASAR HUKUM:</strong> " + law;
-                document.getElementById('term-news').innerHTML = "<strong>DATA REALTIME:</strong> " + news;
-            }, 800);
+    document.addEventListener('DOMContentLoaded', () => {
+        function updateTime() {
+            const clockEl = document.getElementById('real-time-clock');
+            if (clockEl) {
+                const now = new Date();
+                clockEl.innerText = now.toLocaleDateString('id-ID', {
+                    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', 
+                    hour: '2-digit', minute: '2-digit', second: '2-digit'
+                }).toUpperCase();
+            }
         }
-    }
+        setInterval(updateTime, 1000);
+        updateTime();
+        syncAll();
+    });
 
-    // CLOCK & SYNC (Sesuai Konteks 2026)
-    function updateClock() {
-        const now = new Date();
-        document.getElementById('real-time-clock').innerText = now.toLocaleDateString('id-ID', {
-            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit'
-        }).toUpperCase();
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-
-    // BMKG SYNC
-    async function getBMKG() {
+    async function syncAll() {
+        const syncLabel = document.getElementById('sync-time');
+        const magVal = document.getElementById('val-mag');
+        syncLabel.innerText = "SINKRONISASI SEDANG BERJALAN...";
         try {
             const res = await fetch('https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json');
             const data = await res.json();
             const g = data.Infogempa.gempa;
-            document.getElementById('val-mag').innerText = `M ${g.Magnitude} - ${g.Wilayah}`;
-        } catch (e) { document.getElementById('val-mag').innerText = "Data Terkoneksi Local."; }
+            const mag = parseFloat(g.Magnitude);
+            magVal.innerText = 'M ' + g.Magnitude + ' (' + g.Wilayah + ')';
+            
+            if(mag > 6.0) {
+                document.getElementById('pc-bencana').className = "pc darurat";
+                document.getElementById('dot-bencana').className = "status-dot s-darurat";
+                document.getElementById('presiden-msg').innerText = `"Keselamatan rakyat adalah prioritas tertinggi. Terkait bencana di ` + g.Wilayah + `, saya instruksikan seluruh kekuatan negara dikerahkan seketika untuk langkah penyelamatan!"`;
+            } else {
+                document.getElementById('pc-bencana').className = "pc stabil";
+                document.getElementById('dot-bencana').className = "status-dot s-stabil";
+            }
+        } catch (e) {
+            magVal.innerText = "Data BMKG tersinkronisasi secara lokal.";
+        }
+        syncLabel.innerText = "SINKRON TERAKHIR: " + new Date().toLocaleTimeString('id-ID');
     }
-    getBMKG();
 </script>
 
 </body>
