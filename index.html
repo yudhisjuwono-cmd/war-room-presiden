@@ -13,34 +13,23 @@
     .status-yellow { color: orange; font-weight: bold; }
     .status-green { color: green; font-weight: bold; }
     footer { margin-top: 40px; font-size: 0.9em; color: #555; }
-    /* Responsiveness tweaks */
-    @media (max-width: 768px) {
-      table { font-size: 0.9em; }
-      thead { display: none; }
-      tr { margin-bottom: 15px; display: block; border-bottom: 1px solid #ddd; }
-      td { display: block; text-align: left; }
-      td::before { font-weight: bold; display: block; }
-      td:nth-child(1)::before { content: "Indikator:"; }
-      td:nth-child(2)::before { content: "Status:"; }
-      td:nth-child(3)::before { content: "Narasi Laporan:"; }
-      td:nth-child(4)::before { content: "Sumber:"; }
-    }
   </style>
 </head>
 <body>
   <header class="container py-3">
     <h1>SIGAP Republik Indonesia</h1>
-    <p class="lead">Simulasi Kebijakan Publik Berbasis Data Real-Time</p>
-    <p><em>Website ini adalah simulasi kebijakan publik berbasis data real yang bisa diakses umum. Data dikombinasikan dengan laporan internal, kajian akademik, NGO, think tank, dan asosiasi terkait. Tujuannya adalah menunjukkan bagaimana seorang Presiden mengambil kebijakan secara tepat dan terukur setiap harinya.</em></p>
-    <!-- Waktu dan Lokasi -->
-    <p><strong>Waktu Akses:</strong> Sabtu, 14 Maret 2026, 09:22 WIB<br>
-       <strong>Lokasi:</strong> Ciputat, Banten, Indonesia</p>
+    <p class="lead">Dashboard Kebijakan Publik Berbasis Data Real-Time</p>
+    <p><em>Data diambil dari pencarian berita lintas sumber (minimal 6 per indikator), laporan internal, NGO, asosiasi, dan lembaga resmi.</em></p>
+    <p id="time-location">
+      <strong>Waktu Akses:</strong> <span id="current-time"></span><br>
+      <strong>Lokasi:</strong> Jakarta, Indonesia
+    </p>
+    <button class="btn btn-primary" onclick="runDashboard()">Update Situasi</button>
   </header>
 
   <main class="container">
-    <!-- Indikator Strategis -->
     <section id="indicators">
-      <h2>Indikator Strategis (Urut Berdasarkan Urgensi)</h2>
+      <h2>Indikator Strategis</h2>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -50,85 +39,96 @@
             <th>Sumber</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>Pasokan Energi</td>
-            <td class="status-red">🔴 Krisis</td>
-            <td>Distribusi BBM terganggu di beberapa wilayah, antrean panjang di SPBU. NGO energi menyoroti lemahnya cadangan darurat.</td>
-            <td><a href="https://www.reuters.com" target="_blank">Reuters</a></td>
-          </tr>
-          <tr>
-            <td>Harga Beras</td>
-            <td class="status-red">🔴 Krisis</td>
-            <td>Harga beras naik 8% dalam seminggu, stok Bulog menipis. Kajian IPB menekankan diversifikasi pangan.</td>
-            <td><a href="https://www.kompas.com" target="_blank">Kompas</a></td>
-          </tr>
-          <tr>
-            <td>Inflasi Harian</td>
-            <td class="status-yellow">🟡 Waspada</td>
-            <td>Inflasi bahan pokok naik 0,7% minggu ini. Think tank ekonomi menilai tekanan global ikut berperan.</td>
-            <td><a href="https://www.worldbank.org" target="_blank">World Bank</a></td>
-          </tr>
-          <tr>
-            <td>Produksi Industri</td>
-            <td class="status-yellow">🟡 Waspada</td>
-            <td>Produksi baja turun 2%, berdampak pada proyek konstruksi. Asosiasi industri menyoroti biaya energi.</td>
-            <td><a href="https://www.ft.com" target="_blank">Financial Times</a></td>
-          </tr>
-          <tr>
-            <td>Kesehatan Publik</td>
-            <td class="status-yellow">🟡 Waspada</td>
-            <td>Kasus ISPA meningkat di kota besar akibat polusi. Laporan WHO dan NGO lingkungan mendukung data ini.</td>
-            <td><a href="https://www.who.int" target="_blank">WHO</a></td>
-          </tr>
-          <tr>
-            <td>Situasi Sosial & Keamanan</td>
-            <td class="status-green">🟢 Stabil</td>
-            <td>Tidak ada kerusuhan, situasi relatif aman. Polri dan media nasional menegaskan kondisi stabil, NGO lokal menekankan pentingnya komunikasi publik agar tidak muncul kepanikan.</td>
-            <td><a href="https://www.cnnindonesia.com" target="_blank">CNN Indonesia</a></td>
-          </tr>
-          <tr>
-            <td>Nilai Tukar Rupiah</td>
-            <td class="status-green">🟢 Stabil</td>
-            <td>Rupiah stabil di Rp 15.500/USD. Bank Indonesia menegaskan intervensi berjalan efektif.</td>
-            <td><a href="https://www.bi.go.id" target="_blank">Bank Indonesia</a></td>
-          </tr>
-          <tr>
-            <td>Cadangan Devisa</td>
-            <td class="status-green">🟢 Stabil</td>
-            <td>Cadangan devisa tetap di level aman USD 145 miliar. Laporan IMF mendukung stabilitas ini.</td>
-            <td><a href="https://www.imf.org" target="_blank">IMF</a></td>
-          </tr>
-          <tr>
-            <td>Investasi Masuk</td>
-            <td class="status-green">🟢 Stabil</td>
-            <td>Investasi asing naik 3% bulan ini. BKPM melaporkan tren positif di sektor manufaktur.</td>
-            <td><a href="https://www.bkpm.go.id" target="_blank">BKPM</a></td>
-          </tr>
-          <tr>
-            <td>Infrastruktur Strategis</td>
-            <td class="status-green">🟢 Stabil</td>
-            <td>Proyek jalan tol berjalan sesuai jadwal. Asosiasi konstruksi menilai progres sesuai target.</td>
-            <td><a href="https://www.worldbank.org" target="_blank">World Bank</a></td>
-          </tr>
-        </tbody>
+        <tbody id="row-energi"></tbody>
+        <tbody id="row-beras"></tbody>
+        <tbody id="row-inflasi"></tbody>
+        <tbody id="row-industri"></tbody>
+        <tbody id="row-kesehatan"></tbody>
+        <tbody id="row-sosial"></tbody>
+        <tbody id="row-rupiah"></tbody>
+        <tbody id="row-devisa"></tbody>
+        <tbody id="row-investasi"></tbody>
+        <tbody id="row-infrastruktur"></tbody>
       </table>
     </section>
 
-    <!-- Brief Policy -->
     <section id="brief-policy" class="mt-5">
       <h2>Brief Policy Harian</h2>
-      <div class="p-3 bg-light border">
-        <p>Hari ini, indikator paling krusial adalah <strong>pasokan energi</strong> dan <strong>harga beras</strong> yang masuk kategori krisis. Inflasi harian, produksi industri, dan kesehatan publik berada pada status waspada. Sementara itu, situasi sosial & keamanan, nilai tukar rupiah, cadangan devisa, investasi, dan infrastruktur strategis relatif stabil.</p>
-        <p>Prioritas kebijakan diarahkan pada stabilisasi distribusi energi dan operasi pasar beras, dengan tetap menjaga komunikasi publik agar masyarakat tenang dan sektor lain tidak terdampak lebih jauh.</p>
-      </div>
+      <div class="p-3 bg-light border" id="policy-text"></div>
     </section>
 
-    <!-- Arahan Presiden -->
     <section id="presiden" class="mt-5">
       <h2>Arahan Presiden</h2>
-      <div class="p-3 bg-light border">
-        <p><strong>Untuk rakyat umum:</strong><br>
-        “Saudara-saudara sebangsa dan setanah air, pemerintah hadir untuk memastikan kebutuhan dasar rakyat tetap terpenuhi. Tidak ada keluarga yang boleh kesulitan mendapatkan beras dan bahan bakar.”</p>
-        <p><strong>Untuk kalangan akademik dan praktisi:</strong><br>
-        “Data harian dari kementerian, media kredibel, NGO, dan kajian akademik menunjukkan tekanan pada sektor energi dan pangan. Saya menginstruksikan Menteri ESD
+      <div class="p-3 bg-light border" id="presiden-text"></div>
+    </section>
+  </main>
+
+  <footer class="container text-center">
+    <p>&copy; 2026 SIGAP Republik Indonesia. Semua hak dilindungi.</p>
+  </footer>
+
+  <script>
+    function updateSituasi() {
+      document.getElementById("current-time").innerText = new Date().toLocaleString();
+    }
+
+    async function updateIndikator(query, rowId) {
+      // Ambil hasil pencarian dari backend proxy (misalnya Node.js/Express)
+      const response = await fetch(`/search?q=${encodeURIComponent(query)}&count=6`);
+      const data = await response.json();
+
+      let rows = "";
+      let krisisCount = 0;
+      data.results.forEach(r => {
+        let statusClass = "status-green";
+        let statusIcon = "🟢 Stabil";
+        const title = r.title.toLowerCase();
+        if (title.includes("krisis") || title.includes("naik") || title.includes("turun")) {
+          statusClass = "status-red"; statusIcon = "🔴 Krisis"; krisisCount++;
+        } else if (title.includes("waspada") || title.includes("tekanan")) {
+          statusClass = "status-yellow"; statusIcon = "🟡 Waspada";
+        }
+        rows += `
+          <tr>
+            <td>${query}</td>
+            <td class="${statusClass}">${statusIcon}</td>
+            <td>${r.title}</td>
+            <td><a href="${r.link}" target="_blank">${r.source}</a></td>
+          </tr>
+        `;
+      });
+      document.querySelector(rowId).innerHTML = rows;
+      return krisisCount;
+    }
+
+    async function runDashboard() {
+      updateSituasi();
+      let krisisTotal = 0;
+      krisisTotal += await updateIndikator("pasokan energi Indonesia", "#row-energi");
+      krisisTotal += await updateIndikator("harga beras Indonesia", "#row-beras");
+      krisisTotal += await updateIndikator("inflasi Indonesia", "#row-inflasi");
+      krisisTotal += await updateIndikator("produksi industri Indonesia", "#row-industri");
+      krisisTotal += await updateIndikator("kesehatan publik Indonesia", "#row-kesehatan");
+      krisisTotal += await updateIndikator("situasi sosial keamanan Indonesia", "#row-sosial");
+      krisisTotal += await updateIndikator("nilai tukar rupiah", "#row-rupiah");
+      krisisTotal += await updateIndikator("cadangan devisa Indonesia", "#row-devisa");
+      krisisTotal += await updateIndikator("investasi asing Indonesia", "#row-investasi");
+      krisisTotal += await updateIndikator("infrastruktur strategis Indonesia", "#row-infrastruktur");
+
+      // Brief Policy otomatis
+      let policy = krisisTotal > 0
+        ? `<p>Terdapat ${krisisTotal} indikator krisis. Prioritas kebijakan diarahkan pada stabilisasi sektor tersebut dengan operasi pasar, intervensi fiskal, dan komunikasi publik.</p>`
+        : `<p>Seluruh indikator relatif stabil. Kebijakan diarahkan pada penguatan investasi dan pembangunan infrastruktur.</p>`;
+      document.getElementById("policy-text").innerHTML = policy;
+
+      // Arahan Presiden otomatis
+      let presiden = krisisTotal > 0
+        ? `<p><strong>Arahan Presiden:</strong><br>“Pemerintah hadir untuk memastikan kebutuhan dasar rakyat tetap terpenuhi. Sektor yang sedang krisis akan segera ditangani dengan langkah terukur agar stabilitas nasional tetap terjaga.”</p>`
+        : `<p><strong>Arahan Presiden:</strong><br>“Kondisi nasional relatif stabil. Pemerintah akan fokus pada penguatan daya saing, investasi, dan pembangunan berkelanjutan.”</p>`;
+      document.getElementById("presiden-text").innerHTML = presiden;
+    }
+
+    runDashboard();
+  </script>
+</body>
+</html>
