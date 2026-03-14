@@ -16,8 +16,14 @@
     /* Responsiveness tweaks */
     @media (max-width: 768px) {
       table { font-size: 0.9em; }
-      td, th { display: block; width: 100%; }
-      td::before { font-weight: bold; display: inline-block; margin-right: 5px; }
+      thead { display: none; }
+      tr { margin-bottom: 15px; display: block; border-bottom: 1px solid #ddd; }
+      td { display: block; text-align: left; }
+      td::before { font-weight: bold; display: block; }
+      td:nth-child(1)::before { content: "Indikator:"; }
+      td:nth-child(2)::before { content: "Status:"; }
+      td:nth-child(3)::before { content: "Narasi Laporan:"; }
+      td:nth-child(4)::before { content: "Sumber:"; }
     }
   </style>
 </head>
