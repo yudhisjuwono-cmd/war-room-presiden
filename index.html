@@ -1,291 +1,125 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SIGAP RI · Sistem Informasi Gardu Analisis Presiden</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=IBM+Plex+Mono:wght@400;700&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
-<style>
-    :root {
-        --red: #c8102e; --ink: #0c0c0c; --paper: #f3ede3; --line: #ccc5b5; --muted: #6b6355;
-        --blue: #0d4a8c; --amber: #b87000; --green: #1a6b2e;
-        --serif: 'Playfair Display', serif; --mono: 'IBM Plex Mono', monospace; --sans: 'IBM Plex Sans', sans-serif;
-    }
-    body { background: var(--paper); color: var(--ink); font-family: var(--sans); margin: 0; padding: 0; overflow-x: hidden; }
-    .top-bar { height: 6px; background: linear-gradient(90deg, var(--red) 50% , #fff 50%); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--line); }
-    
-    header { padding: 20px 36px; border-bottom: 1px solid var(--line); background: #fff; display: flex; justify-content: space-between; align-items: center; }
-    .brand-box { display: flex; align-items: center; gap: 12px; }
-    .sigap-tag { background: var(--red); color: #fff; font-family: var(--mono); font-weight: 700; padding: 4px 12px; border-radius: 3px; letter-spacing: 1px; }
-    .brand-title { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; }
-    .h-meta { text-align: right; font-family: var(--mono); font-size: 11px; font-weight: 700; }
-    
-    .wrap { max-width: 1400px; margin: 0 auto; padding: 25px; }
-
-    /* PANEL PROTOKOL SIMULASI */
-    .info-panel { background: #e9e3d7; border-left: 5px solid var(--red); padding: 25px; margin-bottom: 35px; box-shadow: 5px 5px 0 rgba(0,0,0,0.05); }
-    .info-title { font-family: var(--serif); font-size: 1.2rem; font-weight: 700; color: var(--red); display: block; margin-bottom: 15px; font-style: italic; }
-    .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; font-size: 0.9rem; line-height: 1.6; }
-    .info-grid strong { font-family: var(--mono); font-size: 0.75rem; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 5px; }
-
-    /* AMANAT PRESIDEN */
-    .hero-statement { background: #fff; border: 2px solid var(--ink); padding: 45px; margin-bottom: 30px; position: relative; box-shadow: 15px 15px 0 var(--line); }
-    .label-top { position: absolute; top: -12px; left: 30px; background: var(--red); color: #fff; padding: 3px 15px; font-family: var(--mono); font-size: 10px; font-weight: 700; }
-    .statement-text { font-family: var(--serif); font-size: clamp(1.4rem, 2.8vw, 2rem); font-style: italic; line-height: 1.4; margin: 0 0 25px 0; }
-    
-    /* MATRIKS EKSEKUTIF */
-    .exec-matrix { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; background: var(--ink); color: #fff; padding: 25px; font-family: var(--mono); margin-bottom: 40px; }
-    .exec-item { border-left: 1px solid #444; padding-left: 20px; }
-    .exec-item:first-child { border-left: none; padding-left: 0; }
-    .exec-lbl { font-size: 8px; color: var(--line); text-transform: uppercase; margin-bottom: 8px; display: block; }
-    .exec-val { font-size: 0.85rem; line-height: 1.5; color: #eee; }
-
-    /* PILAR GRID */
-    .sh { font-family: var(--mono); font-size: 9px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin: 40px 0 20px; display: flex; align-items: center; gap: 10px; }
-    .sh::after { content: ''; flex: 1; height: 1px; background: var(--line); }
-    
-    .pgrid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; margin-bottom: 50px; }
-    .pc { background: #fff; border: 1px solid var(--line); padding: 18px; border-top-width: 5px; min-height: 160px; transition: transform 0.2s; }
-    .pc:hover { transform: translateY(-5px); }
-    .pc.stabil { border-top-color: var(--green); }
-    .pc.waspada { border-top-color: var(--amber); }
-    .pc.darurat { border-top-color: var(--red); }
-    .pc-num { font-family: var(--mono); font-size: 8px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; color: var(--muted); margin-bottom: 10px; }
-    .status-dot { width: 8px; height: 8px; border-radius: 50%; display: block; }
-    .s-stabil { background: var(--green); }
-    .s-waspada { background: var(--amber); }
-    .s-darurat { background: var(--red); }
-    .pc-title { font-weight: 700; display: block; margin-bottom: 8px; font-family: var(--serif); font-style: italic; font-size: 1.1rem; }
-    .pc-brief { font-size: 0.8rem; color: #444; line-height: 1.5; }
-
-    /* LAPORAN KEBIJAKAN (POLICY BRIEF) */
-    .policy-brief { background: #fff; border: 1px solid var(--line); padding: 50px; max-width: 1000px; margin: 0 auto 60px; position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.05); }
-    .pb-header { text-align: center; border-bottom: 2px double var(--ink); padding-bottom: 25px; margin-bottom: 35px; }
-    .pb-header h2 { font-family: var(--serif); font-size: 1.8rem; text-transform: uppercase; letter-spacing: 2px; margin: 0; }
-    .pb-section { margin-bottom: 30px; }
-    .pb-title { font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: 12px; display: block; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-    .pb-content { font-size: 0.95rem; line-height: 1.8; text-align: justify; color: #333; }
-    .pb-content ul { padding-left: 20px; }
-    .pb-content li { margin-bottom: 12px; }
-
-    footer { background: var(--ink); color: #fff; padding: 25px 36px; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 9px; }
-    .btn-sync { background: var(--red); color: #fff; border: none; padding: 8px 16px; font-family: var(--mono); font-size: 10px; cursor: pointer; transition: 0.2s; border-radius: 2px; }
-    .btn-sync:hover { filter: brightness(1.2); }
-
-    @media (max-width: 1100px) { .pgrid { grid-template-columns: repeat(2, 1fr); } .exec-matrix, .info-grid { grid-template-columns: 1fr; gap: 15px; } .policy-brief { padding: 30px; } }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGAP Republik Indonesia</title>
+  <!-- Clean look ala The Economist -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { font-family: 'Georgia', serif; background-color: #f9f9f9; color: #222; }
+    header { border-bottom: 2px solid #000; margin-bottom: 20px; }
+    h1 { font-weight: bold; }
+    .indicator-status { font-weight: bold; }
+    .status-green { color: green; }
+    .status-yellow { color: orange; }
+    .status-red { color: red; }
+    footer { margin-top: 40px; font-size: 0.9em; color: #555; }
+  </style>
 </head>
 <body>
+  <header class="container py-3">
+    <h1>SIGAP Republik Indonesia</h1>
+    <p class="lead">Simulasi Edukasi Kebijakan Publik Berbasis Data Real-Time</p>
+    <nav>
+      <a href="#harian">Indikator Harian</a> | 
+      <a href="#mingguan">Indikator Mingguan</a> | 
+      <a href="#presiden">Arahan Presiden</a>
+    </nav>
+  </header>
 
-<div class="top-bar"></div>
+  <main class="container">
+    <!-- Indikator Harian -->
+    <section id="harian">
+      <h2>Indikator Harian</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Indikator</th>
+            <th>Status</th>
+            <th>Laporan Eselon I</th>
+          </tr>
+        </thead>
+        <tbody id="daily-indicators">
+          <!-- Data akan diisi via JavaScript -->
+        </tbody>
+      </table>
+    </section>
 
-<header>
-    <div class="brand-box">
-        <div class="sigap-tag">SIGAP</div>
-        <div class="brand-title">RI <span style="font-weight: 400; font-size: 0.9rem; color: var(--muted); font-style: italic; margin-left: 10px;">— Sistem Informasi Gardu Analisis Presiden</span></div>
-    </div>
-    <div class="h-meta">
-        <div id="real-time-clock">MEMUAT DATA WAKTU...</div>
-        <button class="btn-sync" onclick="syncAll()">⟳ SINKRONISASI NASIONAL</button>
-    </div>
-</header>
+    <!-- Indikator Mingguan -->
+    <section id="mingguan" class="mt-5">
+      <h2>Indikator Mingguan/Bulanan</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Indikator</th>
+            <th>Status</th>
+            <th>Laporan Eselon I</th>
+          </tr>
+        </thead>
+        <tbody id="weekly-indicators">
+          <!-- Data akan diisi via JavaScript -->
+        </tbody>
+      </table>
+    </section>
 
-<div class="wrap">
+    <!-- Arahan Presiden -->
+    <section id="presiden" class="mt-5">
+      <h2>Arahan Presiden</h2>
+      <div id="president-brief" class="p-3 bg-light border">
+        <!-- Statement final akan muncul di sini -->
+      </div>
+    </section>
+  </main>
 
-    <div class="info-panel">
-        <span class="info-title">Dialektika Kebijakan & Konstruksi Data</span>
-        <div class="info-grid">
-            <div>
-                <strong>Sintesis Data Terintegrasi</strong>
-                Platform ini mengagregasi parameter makro secara langsung melalui API publik (BMKG) dan indikator pasar global, diselaraskan dengan proyeksi strategis ketahanan nasional 2026.
-            </div>
-            <div>
-                <strong>Filosofi Pengelolaan</strong>
-                Setiap variabel dianalisis melalui lensa Konstitusi guna memastikan keputusan teknokratis tetap memiliki landasan moral dan keadilan sosial bagi seluruh rakyat.
-            </div>
-            <div>
-                <strong>Objektif Edukasi</strong>
-                Mendemonstrasikan proses pengambilan keputusan yang sinergis: menerjemahkan kompleksitas data mentah menjadi instruksi eksekutif yang solid dan terukur.
-            </div>
-        </div>
-    </div>
-    
-    <div class="hero-statement">
-        <div class="label-top">AMANAT & ARAHAN STRATEGIS</div>
-        <p class="statement-text" id="presiden-msg">
-            "Negara harus hadir sebagai pelindung yang tak tergoyahkan. Setiap kebijakan yang kita ambil adalah ikhtiar kolektif untuk memastikan keadilan sosial hadir di setiap rumah tangga Indonesia."
-        </p>
-        <div style="font-family: var(--mono); font-size: 9px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 15px; display: flex; justify-content: space-between;">
-            <span>KONSTITUSI: PASAL 33 UUD 1945</span>
-            <span>PRINSIP: PANCASILA & KETAHANAN NASIONAL</span>
-        </div>
-    </div>
+  <footer class="container py-3">
+    <p><em>Disclaimer:</em> Ini adalah simulasi edukasi kebijakan publik. Data diambil dari sumber terbuka dan kredibel, bukan kanal resmi pemerintah.</p>
+  </footer>
 
-    <div class="exec-matrix">
-        <div class="exec-item">
-            <span class="exec-lbl">Orkestrasi Sektoral</span>
-            <div class="exec-val" id="exec-target">Menteri Koordinator, Pimpinan Lembaga Tinggi, Pemerintah Daerah</div>
-        </div>
-        <div class="exec-item">
-            <span class="exec-lbl">Mandat Operasional</span>
-            <div class="exec-val" id="exec-action">Memperkuat efisiensi rantai pasok domestik dan stabilisasi harga kebutuhan pokok melalui intervensi fiskal yang disiplin.</div>
-        </div>
-        <div class="exec-item">
-            <span class="exec-lbl">Parameter Keberhasilan</span>
-            <div class="exec-val" id="exec-goal">Inflasi Terkendali & Indeks Kepercayaan Masyarakat Jangka Panjang</div>
-        </div>
-        <div class="exec-item">
-            <span class="exec-lbl">Evaluasi Berkala</span>
-            <div class="exec-val" id="exec-deadline">Siklus Monitoring Kabinet Terbatas (7 Hari Kerja)</div>
-        </div>
-    </div>
+  <!-- Script untuk refresh data -->
+  <script>
+    async function fetchIndicators() {
+      // Contoh dummy data, nanti diganti dengan API Google News / RSS
+      const dailyData = [
+        { indikator: "Harga Beras", status: "Lampu Kuning", laporan: "Harga naik 5% minggu ini." },
+        { indikator: "Nilai Tukar Rupiah", status: "Stabil", laporan: "Rupiah stabil di 15.500/USD." },
+        { indikator: "Pasokan Energi", status: "Lampu Merah", laporan: "Distribusi BBM terganggu di Jawa Barat." }
+      ];
 
-    <div class="sh">📡 Status Indikator Strategis Nasional</div>
-    <div class="pgrid">
-        <div class="pc waspada">
-            <div class="pc-num"><span>01 · PANGAN</span> <span class="status-dot s-waspada"></span></div>
-            <span class="pc-title">Ketahanan Pangan</span>
-            <div class="pc-brief">Fluktuasi harga komoditas musiman memerlukan pengawasan ketat terhadap distribusi cadangan pangan nasional.</div>
-        </div>
-        <div class="pc waspada">
-            <div class="pc-num"><span>02 · MONETER</span> <span class="status-dot s-waspada"></span></div>
-            <span class="pc-title">Ekonomi Makro</span>
-            <div class="pc-brief">Dinamika nilai tukar memerlukan bauran kebijakan moneter yang responsif terhadap volatilitas pasar global.</div>
-        </div>
-        <div class="pc darurat">
-            <div class="pc-num"><span>03 · SOSIAL</span> <span class="status-dot s-darurat"></span></div>
-            <span class="pc-title">Sentimen Publik</span>
-            <div class="pc-brief">Diperlukan penguatan strategi komunikasi terkait transparansi program strategis guna menjaga kepercayaan masyarakat.</div>
-        </div>
-        <div class="pc stabil">
-            <div class="pc-num"><span>04 · INDUSTRI</span> <span class="status-dot s-stabil"></span></div>
-            <span class="pc-title">Hilirisasi</span>
-            <div class="pc-brief">Ekspansi sektor pengolahan menunjukkan performa positif dalam meningkatkan nilai tambah ekspor nasional.</div>
-        </div>
-        <div class="pc stabil">
-            <div class="pc-num"><span>05 · FISKAL</span> <span class="status-dot s-stabil"></span></div>
-            <span class="pc-title">Dukungan Sosial</span>
-            <div class="pc-brief">Penyaluran bantuan sosial terus dioptimalkan melalui integrasi data yang lebih akurat dan transparan.</div>
-        </div>
-        <div class="pc waspada">
-            <div class="pc-num"><span>06 · ENERGI</span> <span class="status-dot s-waspada"></span></div>
-            <span class="pc-title">Subsidi Energi</span>
-            <div class="pc-brief">Pengawasan kuota subsidi energi dilakukan secara ketat untuk menjaga keberlanjutan postur fiskal APBN.</div>
-        </div>
-        <div class="pc stabil">
-            <div class="pc-num"><span>07 · LOGISTIK</span> <span class="status-dot s-stabil"></span></div>
-            <span class="pc-title">Infrastruktur</span>
-            <div class="pc-brief">Target konektivitas antar-wilayah terus menunjukkan kemajuan dalam mendukung mobilitas ekonomi rakyat.</div>
-        </div>
-        <div class="pc stabil">
-            <div class="pc-num"><span>08 · SDM</span> <span class="status-dot s-stabil"></span></div>
-            <span class="pc-title">Kesehatan</span>
-            <div class="pc-brief">Penguatan sistem kesehatan primer dan preventif berhasil menurunkan angka beban rujukan nasional.</div>
-        </div>
-        <div class="pc stabil" id="pc-bencana">
-            <div class="pc-num"><span>09 · KRISIS</span> <span class="status-dot s-stabil" id="dot-bencana"></span></div>
-            <span class="pc-title">Kebencanaan</span>
-            <div class="pc-brief" id="val-mag">Status: Aman. Sistem pemantauan BMKG tersinkronisasi.</div>
-        </div>
-        <div class="pc stabil">
-            <div class="pc-num"><span>10 · INVESTASI</span> <span class="status-dot s-stabil"></span></div>
-            <span class="pc-title">Pasar Modal</span>
-            <div class="pc-brief">Keyakinan investor terhadap stabilitas fundamental ekonomi Indonesia tetap berada pada zona positif.</div>
-        </div>
-    </div>
+      const weeklyData = [
+        { indikator: "Investasi Masuk", status: "Stabil", laporan: "Investasi asing naik 3%." },
+        { indikator: "Produksi Industri", status: "Lampu Kuning", laporan: "Produksi baja turun 2%." }
+      ];
 
-    <div class="sh">📝 Laporan Kebijakan Strategis</div>
-    
-    <div class="policy-brief">
-        <div class="pb-header">
-            <h2>Laporan Kebijakan: Stabilitas Nasional 2026</h2>
-            <p>NOMOR: PB/SIGAP-RI/001/III/2026 · KLASIFIKASI: STRATEGIS/TERBATAS</p>
-        </div>
-        
-        <div class="pb-section">
-            <span class="pb-title">Ringkasan Eksekutif</span>
-            <div class="pb-content">
-                Meskipun fundamental ekonomi nasional berada dalam posisi ekspansif, terdapat urgensi untuk melakukan mitigasi terhadap tekanan harga pangan di tingkat daerah dan volatilitas nilai tukar. Pendekatan lintas sektoral diperlukan untuk memastikan daya beli masyarakat tetap terjaga di tengah ketidakpastian global.
-            </div>
-        </div>
+      const presidentBrief = "Hari ini isu paling krusial adalah pasokan energi. Presiden mengarahkan Menteri ESDM dan Pertamina untuk menstabilkan distribusi BBM dalam 7 hari.";
 
-        <div class="pb-section">
-            <span class="pb-title">Analisis Situasi Terkini</span>
-            <div class="pb-content">
-                <ul>
-                    <li><strong>Disrupsi Logistik:</strong> Hambatan distribusi di wilayah kepulauan memicu disparitas harga pangan pokok meskipun stok nasional mencukupi.</li>
-                    <li><strong>Dinamika Global:</strong> Kebijakan suku bunga luar negeri menuntut respon moneter yang presisi untuk menghindari arus modal keluar yang masif.</li>
-                </ul>
-            </div>
-        </div>
+      // Render tabel harian
+      const dailyTable = document.getElementById("daily-indicators");
+      dailyTable.innerHTML = dailyData.map(d =>
+        `<tr>
+          <td>${d.indikator}</td>
+          <td class="indicator-status ${d.status.includes('Stabil') ? 'status-green' : d.status.includes('Kuning') ? 'status-yellow' : 'status-red'}">${d.status}</td>
+          <td>${d.laporan}</td>
+        </tr>`
+      ).join("");
 
-        <div class="pb-section">
-            <span class="pb-title">Rekomendasi Strategis</span>
-            <div class="pb-content">
-                <ul>
-                    <li>Aktivasi koordinasi Tim Pengendali Inflasi Daerah (TPID) untuk memastikan kelancaran arus barang hingga ke pasar tradisional.</li>
-                    <li>Penguatan narasi publik mengenai keberlanjutan program perlindungan sosial untuk meredam spekulasi pasar dan sentimen negatif.</li>
-                    <li>Optimalisasi pemanfaatan cadangan devisa secara terukur guna memberikan kepastian bagi pelaku usaha sektor riil.</li>
-                </ul>
-            </div>
-        </div>
+      // Render tabel mingguan
+      const weeklyTable = document.getElementById("weekly-indicators");
+      weeklyTable.innerHTML = weeklyData.map(d =>
+        `<tr>
+          <td>${d.indikator}</td>
+          <td class="indicator-status ${d.status.includes('Stabil') ? 'status-green' : d.status.includes('Kuning') ? 'status-yellow' : 'status-red'}">${d.status}</td>
+          <td>${d.laporan}</td>
+        </tr>`
+      ).join("");
 
-        <div style="margin-top: 50px; text-align: right; font-family: var(--mono); font-size: 11px;">
-            Ditetapkan di Jakarta,<br>
-            Tim Analis Strategis SIGAP RI
-        </div>
-    </div>
-
-</div>
-
-<footer>
-    <span>SIGAP RI · SISTEM INFORMASI KEPUTUSAN PRESIDEN · VERSI 2026.5</span>
-    <span id="sync-time">SINKRONISASI: TERKONEKSI</span>
-</footer>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        function updateTime() {
-            const clockEl = document.getElementById('real-time-clock');
-            if (clockEl) {
-                const now = new Date();
-                clockEl.innerText = now.toLocaleDateString('id-ID', {
-                    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', 
-                    hour: '2-digit', minute: '2-digit', second: '2-digit'
-                }).toUpperCase();
-            }
-        }
-        setInterval(updateTime, 1000);
-        updateTime();
-        syncAll();
-    });
-
-    async function syncAll() {
-        const syncLabel = document.getElementById('sync-time');
-        const magVal = document.getElementById('val-mag');
-        syncLabel.innerText = "SINKRONISASI SEDANG BERJALAN...";
-        try {
-            const res = await fetch('https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json');
-            const data = await res.json();
-            const g = data.Infogempa.gempa;
-            const mag = parseFloat(g.Magnitude);
-            magVal.innerText = 'M ' + g.Magnitude + ' (' + g.Wilayah + ')';
-            
-            if(mag > 6.0) {
-                document.getElementById('pc-bencana').className = "pc darurat";
-                document.getElementById('dot-bencana').className = "status-dot s-darurat";
-                document.getElementById('presiden-msg').innerText = `"Keselamatan rakyat adalah prioritas tertinggi. Terkait bencana di ` + g.Wilayah + `, saya instruksikan seluruh kekuatan negara dikerahkan seketika untuk langkah penyelamatan!"`;
-            } else {
-                document.getElementById('pc-bencana').className = "pc stabil";
-                document.getElementById('dot-bencana').className = "status-dot s-stabil";
-            }
-        } catch (e) {
-            magVal.innerText = "Data BMKG tersinkronisasi secara lokal.";
-        }
-        syncLabel.innerText = "SINKRON TERAKHIR: " + new Date().toLocaleTimeString('id-ID');
+      // Render arahan Presiden
+      document.getElementById("president-brief").innerText = presidentBrief;
     }
-</script>
 
+    // Refresh otomatis setiap 5 menit
+    fetchIndicators();
+    setInterval(fetchIndicators, 300000);
+  </script>
 </body>
 </html>
-
