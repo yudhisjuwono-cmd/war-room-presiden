@@ -9,163 +9,188 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); }
+        .custom-scroll::-webkit-scrollbar { width: 4px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
     </style>
 </head>
-<body class="bg-slate-100 text-slate-900">
+<body class="bg-slate-50 text-slate-900">
 
-    <header class="bg-indigo-950 text-white p-4 sticky top-0 z-50 shadow-xl border-b border-indigo-800">
+    <header class="bg-[#0f172a] text-white p-4 sticky top-0 z-50 shadow-lg">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="bg-white p-1 rounded-full"><i data-lucide="landmark" class="w-6 h-6 text-indigo-950"></i></div>
-                <h1 class="font-bold tracking-tighter text-xl uppercase">Pusat Strategi Nasional</h1>
+                <div class="bg-red-600 p-1.5 rounded-lg shadow-inner">
+                    <i data-lucide="shield-alert" class="w-6 h-6 text-white"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold tracking-tighter text-lg uppercase leading-none">SIGAP RI</h1>
+                    <span class="text-[9px] text-slate-400 tracking-[0.2em]">National Intelligence Dashboard</span>
+                </div>
             </div>
-            <div id="live-clock" class="font-mono text-sm bg-indigo-900 px-3 py-1 rounded border border-indigo-700"></div>
+            <div id="live-clock" class="font-mono text-xs bg-slate-800 px-3 py-1.5 rounded-md border border-slate-700 text-emerald-400 shadow-sm"></div>
         </div>
     </header>
 
     <main class="max-w-7xl mx-auto p-4 lg:p-6 space-y-6">
         
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="bg-white p-4 rounded-2xl shadow-sm border-l-4 border-red-500">
-                <p class="text-[10px] font-bold text-slate-400 uppercase">Indeks Isu Viral</p>
-                <h4 class="text-xl font-bold" id="viral-index">Low</h4>
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1 font-mono">Status Isu</p>
+                <div class="flex items-center gap-2">
+                    <span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span></span>
+                    <h4 class="text-lg font-bold" id="status-isu text-emerald-600">Kondusif</h4>
+                </div>
             </div>
-            <div class="bg-white p-4 rounded-2xl shadow-sm border-l-4 border-emerald-500">
-                <p class="text-[10px] font-bold text-slate-400 uppercase">Stabilitas Hukum</p>
-                <h4 class="text-xl font-bold">Terjaga</h4>
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 text-slate-400">
+                <p class="text-[10px] font-bold uppercase tracking-widest mb-1 font-mono">Urgensi</p>
+                <h4 class="text-lg font-bold text-slate-700" id="urgency-level">Normal</h4>
             </div>
-            <div class="bg-white p-4 rounded-2xl shadow-sm border-l-4 border-blue-500">
-                <p class="text-[10px] font-bold text-slate-400 uppercase">Sentimen Publik</p>
-                <h4 class="text-xl font-bold">Netral</h4>
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1 font-mono">Sentimen</p>
+                <h4 class="text-lg font-bold text-blue-600">Netral</h4>
             </div>
-            <div class="bg-white p-4 rounded-2xl shadow-sm border-l-4 border-amber-500">
-                <p class="text-[10px] font-bold text-slate-400 uppercase">Urgensi Kebijakan</p>
-                <h4 class="text-xl font-bold" id="urgency-label">Normal</h4>
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1 font-mono">Sync</p>
+                <h4 class="text-lg font-bold text-slate-700">Online</h4>
             </div>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            <div class="lg:col-span-4 bg-white rounded-3xl p-5 shadow-sm border border-slate-200">
-                <h3 class="font-bold flex items-center gap-2 mb-4 text-slate-700">
-                    <i data-lucide="rss" class="w-4 h-4"></i> Monitoring Real-Time
+            <div class="lg:col-span-4 bg-white rounded-3xl p-5 shadow-sm border border-slate-200 h-fit">
+                <h3 class="font-bold flex items-center gap-2 mb-4 text-slate-700 text-sm uppercase tracking-wider">
+                    <i data-lucide="activity" class="w-4 h-4 text-red-500"></i> Monitoring Portal Utama
                 </h3>
-                <div id="news-feed" class="space-y-3 max-h-[700px] overflow-y-auto pr-2">
-                    <div class="animate-pulse h-20 bg-slate-100 rounded-xl"></div>
+                <div id="news-feed" class="space-y-3 max-h-[600px] overflow-y-auto pr-2 custom-scroll">
+                    <div class="p-8 text-center"><p class="text-xs text-slate-400 animate-pulse">Menghubungkan ke satelit berita...</p></div>
                 </div>
             </div>
 
             <div class="lg:col-span-8 space-y-6">
-                
-                <div id="executive-brief-card" class="hidden animate-in fade-in slide-in-from-bottom-4 duration-700">
-                    <div class="bg-gradient-to-br from-indigo-900 to-slate-900 text-white rounded-3xl p-8 shadow-2xl relative overflow-hidden">
-                        <div class="relative z-10 space-y-4">
-                            <div class="flex items-center gap-2 text-indigo-300 text-xs font-bold tracking-widest uppercase">
-                                <i data-lucide="mic-2" class="w-4 h-4"></i> Pernyataan Resmi Kepresidenan
+                <div id="executive-card" class="bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white rounded-[2rem] p-8 shadow-2xl border border-slate-800 hidden">
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-3">
+                            <span class="px-3 py-1 bg-indigo-500/20 border border-indigo-400/30 rounded-full text-[10px] font-bold uppercase tracking-widest text-indigo-300">Respon Kepresidenan</span>
+                        </div>
+                        <h2 id="policy-title" class="text-2xl font-bold tracking-tight leading-tight"></h2>
+                        <p id="policy-speech" class="text-slate-300 leading-relaxed font-light italic text-lg border-l-2 border-indigo-500 pl-4"></p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-800">
+                            <div>
+                                <h5 class="text-[10px] font-bold text-indigo-400 uppercase tracking-widest mb-1">Objek Kebijakan</h5>
+                                <p id="target-audience" class="text-sm font-semibold text-slate-200"></p>
                             </div>
-                            <h2 id="policy-title" class="text-2xl font-bold leading-tight">Merespon Dinamika Nasional Terkini</h2>
-                            <p id="policy-speech" class="text-slate-200 leading-relaxed italic font-light">
-                                "Pemerintah tidak akan tinggal diam atas isu yang berkembang..."
-                            </p>
-                            <div class="pt-4 border-t border-indigo-800/50 grid grid-cols-2 gap-4 text-sm">
-                                <div>
-                                    <p class="text-indigo-300 font-bold uppercase text-[10px]">Ditujukan Kepada:</p>
-                                    <p id="target-audience" class="font-semibold italic text-white"></p>
-                                </div>
-                                <div>
-                                    <p class="text-indigo-300 font-bold uppercase text-[10px]">Landasan Hukum:</p>
-                                    <p id="legal-basis" class="font-semibold italic text-white"></p>
-                                </div>
+                            <div>
+                                <h5 class="text-[10px] font-bold text-indigo-400 uppercase tracking-widest mb-1">Konsiderans (Landasan Hukum)</h5>
+                                <p id="legal-basis" class="text-sm font-semibold text-slate-200"></p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
-                    <div class="p-5 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
-                        <h3 class="font-bold text-slate-700 flex items-center gap-2">
-                            <i data-lucide="file-check" class="w-4 h-4"></i> Matriks Instrumen Kebijakan
+                <div class="bg-white rounded-[2rem] shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="p-6 border-b border-slate-50 flex justify-between items-center bg-slate-50/30">
+                        <h3 class="font-bold text-slate-700 flex items-center gap-2 text-sm uppercase tracking-wider">
+                            <i data-lucide="briefcase" class="w-4 h-4 text-indigo-600"></i> Matriks Keputusan Strategis
                         </h3>
                     </div>
                     <div class="overflow-x-auto">
-                        <table class="w-full text-left">
-                            <thead class="bg-slate-50 text-slate-400 uppercase text-[10px] font-bold">
-                                <tr>
-                                    <th class="px-6 py-4 italic">Sektor Strategis</th>
-                                    <th class="px-6 py-4 italic">Bentuk Kebijakan Khusus</th>
-                                    <th class="px-6 py-4 italic">Status</th>
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="text-[10px] font-bold text-slate-400 uppercase tracking-widest bg-slate-50/50">
+                                    <th class="px-6 py-4">Sektor</th>
+                                    <th class="px-6 py-4">Bentuk Kebijakan Khusus</th>
+                                    <th class="px-6 py-4 text-center">Prioritas</th>
                                 </tr>
                             </thead>
                             <tbody id="policy-table" class="text-sm">
-                                </tbody>
+                                <tr>
+                                    <td colspan="3" class="px-6 py-12 text-center text-slate-400 italic">Klik tombol di bawah untuk memproses instruksi kebijakan...</td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
 
-                <button onclick="generateStrategicPolicy()" class="w-full bg-red-600 hover:bg-red-700 text-white py-5 rounded-2xl font-bold text-lg transition-all shadow-xl flex items-center justify-center gap-3">
-                    <i data-lucide="Zap" class="w-5 h-5"></i> ANALISIS & SUSUN KEBIJAKAN STRATEGIS
+                <button onclick="processAI()" id="btn-generate" class="group w-full bg-red-600 hover:bg-red-700 text-white py-6 rounded-2xl font-bold text-lg transition-all shadow-xl shadow-red-200 flex items-center justify-center gap-3 active:scale-95">
+                    <i data-lucide="cog" class="w-6 h-6 group-hover:rotate-180 transition-transform duration-700"></i>
+                    GENERATE POLICY BRIEF
                 </button>
             </div>
         </div>
     </main>
 
     <script>
+        // INIT ICONS
         lucide.createIcons();
+
+        // CLOCK
         setInterval(() => {
-            document.getElementById('live-clock').innerText = new Date().toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'medium' }) + ' WIB';
+            document.getElementById('live-clock').innerText = new Date().toLocaleString('id-ID', { hour:'2-digit', minute:'2-digit', second:'2-digit' }) + ' WIB';
         }, 1000);
 
-        // API Berita
+        // STABLE NEWS FETCH (Using AllOrigins for CORS bypass)
         async function fetchNews() {
             const feed = document.getElementById('news-feed');
+            const rssUrl = encodeURIComponent('https://www.antaranews.com/rss/top-news'); // Antara News sangat stabil untuk RSS
+            const apiUrl = `https://api.allorigins.win/get?url=${rssUrl}`;
+
             try {
-                const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=https://www.detik.com/rss`);
-                const data = await res.json();
-                feed.innerHTML = data.items.map(item => `
-                    <div class="p-3 bg-slate-50 border border-slate-100 rounded-xl">
-                        <span class="text-[9px] font-bold text-indigo-600 uppercase">Real-Time Update</span>
-                        <p class="text-xs font-semibold mt-1">${item.title}</p>
-                    </div>
-                `).join('');
-                
-                // Jika ada kata kunci viral di berita
-                if(JSON.stringify(data.items).includes('viral') || JSON.stringify(data.items).includes('demo')) {
-                    document.getElementById('viral-index').innerText = 'HIGH';
-                    document.getElementById('viral-index').parentElement.classList.add('bg-red-50');
-                }
-            } catch (e) { feed.innerHTML = "Gagal memuat berita."; }
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                const parser = new DOMParser();
+                const xml = parser.parseFromString(data.contents, "text/xml");
+                const items = Array.from(xml.querySelectorAll("item")).slice(0, 8);
+
+                feed.innerHTML = items.map(item => {
+                    const title = item.querySelector("title").textContent;
+                    const link = item.querySelector("link").textContent;
+                    return `
+                        <a href="${link}" target="_blank" class="block p-4 bg-slate-50 border border-slate-100 rounded-2xl hover:border-indigo-400 hover:bg-white transition-all group">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-[9px] font-bold text-indigo-600 uppercase tracking-tighter">Berita Utama</span>
+                                <i data-lucide="external-link" class="w-3 h-3 text-slate-300 group-hover:text-indigo-500"></i>
+                            </div>
+                            <p class="text-xs font-bold leading-snug text-slate-800">${title}</p>
+                        </a>
+                    `;
+                }).join('');
+                lucide.createIcons();
+
+            } catch (error) {
+                feed.innerHTML = `<div class="p-4 bg-red-50 border border-red-100 text-red-600 text-[10px] rounded-xl font-bold uppercase text-center">Gagal sinkronisasi data. Pastikan koneksi internet stabil.</div>`;
+            }
         }
 
-        function generateStrategicPolicy() {
-            const card = document.getElementById('executive-brief-card');
-            const table = document.getElementById('policy-table');
-            
-            card.classList.remove('hidden');
-            
-            // Logika Konten (Sesuai permintaan: Bahasa Mudah vs Intelektual + Hukum)
-            document.getElementById('policy-title').innerText = "Respons Strategis Terhadap Stabilitas Nasional & Kesejahteraan Rakyat";
-            
-            document.getElementById('policy-speech').innerHTML = `
-                "Bapak/Ibu sekalian, pemerintah mendengar aspirasi dan memantau kondisi lapangan. Intinya, kita ingin harga stabil dan rakyat tenang. Namun secara formal, saya instruksikan penguatan tata kelola berdasarkan mandat konstitusi untuk memastikan tidak ada celah bagi gangguan ekonomi maupun hukum."`;
-            
-            document.getElementById('target-audience').innerText = "Kementerian/Lembaga & Seluruh Lapisan Masyarakat";
-            document.getElementById('legal-basis').innerText = "UU No. 11 Tahun 2023 & Perppu Stabilitas Nasional";
-
-            table.innerHTML = `
-                <tr class="border-t">
-                    <td class="px-6 py-4 font-bold">Ekonomi Mikro</td>
-                    <td class="px-6 py-4"><b>Operasi Pasar Terpadu:</b> Intervensi langsung pada komoditas pangan pokok untuk menekan inflasi.</td>
-                    <td class="px-6 py-4"><span class="px-2 py-1 bg-red-100 text-red-700 rounded text-[10px] font-bold tracking-widest">EKSEKUSI</span></td>
-                </tr>
-                <tr class="border-t">
-                    <td class="px-6 py-4 font-bold">Informasi Publik</td>
-                    <td class="px-6 py-4"><b>Counter-Narrative Digital:</b> Klarifikasi isu viral melalui kanal resmi guna mencegah misinformasi berdasarkan UU ITE.</td>
-                    <td class="px-6 py-4"><span class="px-2 py-1 bg-blue-100 text-blue-700 rounded text-[10px] font-bold tracking-widest">AKTIF</span></td>
-                </tr>
-            `;
-
-            document.getElementById('urgency-label').innerText = 'CRITICAL';
+        function processAI() {
+            const btn = document.getElementById('btn-generate');
+            btn.innerHTML = `<i data-lucide="loader-2" class="w-6 h-6 animate-spin"></i> MEMPROSES DATA...`;
             lucide.createIcons();
+
+            setTimeout(() => {
+                document.getElementById('executive-card').classList.remove('hidden');
+                document.getElementById('policy-title').innerText = "Respons Terpadu Terhadap Dinamika Stabilitas Nasional";
+                document.getElementById('policy-speech').innerText = '"Negara hadir untuk memastikan roda ekonomi rakyat tetap berputar dan stabilitas sosial tetap terjaga. Setiap isu yang berkembang di publik disikapi dengan landasan konstitusi yang kuat demi perlindungan segenap bangsa."';
+                document.getElementById('target-audience').innerText = "Kementerian Teknis, Pemerintah Daerah, & Stakeholder Industri";
+                document.getElementById('legal-basis').innerText = "UUD 1945 Pasal 33 & UU No. 2 Tahun 2020";
+
+                document.getElementById('policy-table').innerHTML = `
+                    <tr class="border-t border-slate-50">
+                        <td class="px-6 py-5 font-bold text-slate-800">Sektor Ekonomi</td>
+                        <td class="px-6 py-5"><b>Kebijakan Subsidi Tepat Sasaran:</b> Optimalisasi distribusi logistik melalui pengawasan digital untuk mencegah kelangkaan barang pokok di pasar domestik.</td>
+                        <td class="px-6 py-5 text-center"><span class="px-3 py-1 bg-red-600 text-white rounded-full text-[10px] font-bold tracking-tighter shadow-lg shadow-red-100">VITAL</span></td>
+                    </tr>
+                    <tr class="border-t border-slate-50">
+                        <td class="px-6 py-5 font-bold text-slate-800">Kamtibmas</td>
+                        <td class="px-6 py-5"><b>Satgas Literasi Informasi:</b> Penguatan narasi tunggal pemerintah untuk meredam potensi gejolak sosial akibat misinformasi di platform digital (UU ITE).</td>
+                        <td class="px-6 py-5 text-center"><span class="px-3 py-1 bg-amber-500 text-white rounded-full text-[10px] font-bold tracking-tighter shadow-lg shadow-amber-100">TINGGI</span></td>
+                    </tr>
+                `;
+                
+                document.getElementById('urgency-level').innerText = 'TINGGI';
+                document.getElementById('urgency-level').className = 'text-lg font-bold text-red-600';
+                
+                btn.innerHTML = `<i data-lucide="check-circle-2" class="w-6 h-6"></i> ANALYSIS COMPLETED`;
+                lucide.createIcons();
+            }, 1500);
         }
 
         window.onload = fetchNews;
